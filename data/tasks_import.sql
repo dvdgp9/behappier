@@ -6,7 +6,10 @@ SET CHARACTER SET utf8mb4;
 SET time_zone = '+00:00';
 
 -- Limpiar tabla existente
-TRUNCATE TABLE tasks;
+-- Para respetar la FK fk_entries_task, primero vaciamos `entries` y luego `tasks`.
+DELETE FROM entries;
+DELETE FROM tasks;
+ALTER TABLE tasks AUTO_INCREMENT = 1;
 
 -- Insertar nuevas tareas
 INSERT INTO tasks (duration, title, guidance, category, steps, active) VALUES

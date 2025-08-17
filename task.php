@@ -42,14 +42,14 @@ function suggest_task(PDO $pdo, int $uid, int $duration): ?array {
   if ($avoid) {
     $in = implode(',', array_fill(0, count($avoid), '?'));
     $params = array_merge([$duration], $avoid);
-    $sql = "SELECT id, title, guidance FROM tasks WHERE duration=? AND active=1 AND id NOT IN ($in) ORDER BY RAND() LIMIT 1";
+    $sql = "SELECT id, title, guidance, category, steps FROM tasks WHERE duration=? AND active=1 AND id NOT IN ($in) ORDER BY RAND() LIMIT 1";
     $st2 = $pdo->prepare($sql);
     $st2->execute($params);
     $t = $st2->fetch();
     if ($t) { return $t; }
   }
   // Fallback sin exclusión si no hay suficientes tareas
-  $st3 = $pdo->prepare('SELECT id, title, guidance FROM tasks WHERE duration=? AND active=1 ORDER BY RAND() LIMIT 1');
+  $st3 = $pdo->prepare('SELECT id, title, guidance, category, steps FROM tasks WHERE duration=? AND active=1 ORDER BY RAND() LIMIT 1');
   $st3->execute([$duration]);
   $t = $st3->fetch();
   return $t ?: null;
@@ -82,7 +82,26 @@ $titleForDuration = ($duration === 1)
         <?php if ($task): ?>
           <article class="card desenfocado">
             <h2 class="h1" style="font-size:24px; margin-bottom:6px"><?= e($task['title']) ?></h2>
-            <p class="text-subtle" style="margin:0 0 8px"><?= e($task['guidance']) ?></p>
+            <?php if (!empty($task['category'])): ?>
+              <div style="display:inline-block; background:#E8DFF5; color:#4A3F35; padding:2px 8px; border-radius:12px; font-size:12px; margin:0 0 8px">
+                <?= e($task['category']) ?>
+              </div>
+            <?php endif; ?>
+            <p class="text-subtle" style="margin:8px 0 8px"><?= e($task['guidance']) ?></p>
+            <?php
+              $stepsArr = null;
+              if (!empty($task['steps'])) {
+                $decoded = json_decode((string)$task['steps'], true);
+                if (is_array($decoded)) { $stepsArr = $decoded; }
+              }
+            ?>
+            <?php if ($stepsArr): ?>
+              <ol style="margin:0 0 8px 18px; padding:0; color:#4A3F35">
+                <?php foreach ($stepsArr as $s): ?>
+                  <li style="margin:4px 0;"><?= e((string)$s) ?></li>
+                <?php endforeach; ?>
+              </ol>
+            <?php endif; ?>
             <div id="timer" data-mins="<?= $duration ?>" class="stack-16">
               <div style="font-family:'Patrick Hand',cursive; font-size:42px; letter-spacing:1px">00:00</div>
               <div style="display:flex; gap:8px; flex-wrap:wrap">
