@@ -82,11 +82,6 @@ $titleForDuration = ($duration === 1)
         <?php if ($task): ?>
           <article class="card desenfocado">
             <h2 class="h1" style="font-size:24px; margin-bottom:6px"><?= e($task['title']) ?></h2>
-            <?php if (!empty($task['category'])): ?>
-              <div style="display:inline-block; background:#E8DFF5; color:#4A3F35; padding:2px 8px; border-radius:12px; font-size:12px; margin:0 0 8px">
-                <?= e($task['category']) ?>
-              </div>
-            <?php endif; ?>
             <p class="text-subtle" style="margin:8px 0 8px"><?= e($task['guidance']) ?></p>
             <?php
               $stepsArr = null;
