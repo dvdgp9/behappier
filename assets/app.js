@@ -112,6 +112,28 @@
     // try to focus first input
     const mood = postForm && postForm.querySelector('input[name="mood"]');
     if (mood) mood.focus();
+
+    // Autosave: crea entrada inmediata (sin mood/note) y guarda entry_id oculto
+    try {
+      if (postForm){
+        const csrf = postForm.querySelector('input[name="csrf"]').value;
+        const taskId = postForm.querySelector('input[name="task_id"]').value;
+        const entryIdInput = postForm.querySelector('input[name="entry_id"]');
+        const params = new URLSearchParams();
+        params.set('action', 'autosave');
+        params.set('csrf', csrf);
+        params.set('task_id', taskId);
+        params.set('duration', String(window.BEH_DURATION || mins));
+        fetch('task.php', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: params.toString(),
+          credentials: 'same-origin'
+        }).then(r=>r.json()).then(json=>{
+          if (json && json.ok && entryIdInput){ entryIdInput.value = String(json.entry_id || ''); }
+        }).catch(()=>{});
+      }
+    } catch(_) { /* ignore */ }
   }
 
   btnStart && btnStart.addEventListener('click', start);

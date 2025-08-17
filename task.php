@@ -14,20 +14,52 @@ $duration = parse_duration((string)($_GET['d'] ?? '1'));
 $errors = [];
 $success = false;
 
-// Guardar entrada tras finalizar
-if (is_post() && ($_POST['action'] ?? '') === 'save') {
-  if (!csrf_check($_POST['csrf'] ?? '')) {
-    $errors[] = 'Token CSRF inválido.';
-  } else {
+// Endpoints POST
+if (is_post()) {
+  $action = (string)($_POST['action'] ?? '');
+  if ($action === 'autosave') {
+    // Guardado inmediato al terminar (mood/note nulos)
+    header('Content-Type: application/json; charset=utf-8');
+    if (!csrf_check($_POST['csrf'] ?? '')) {
+      echo json_encode(['ok' => false, 'error' => 'csrf']);
+      exit;
+    }
     $task_id = (int)($_POST['task_id'] ?? 0);
-    $mood = $_POST['mood'] !== '' ? (int)$_POST['mood'] : null;
-    $note = trim((string)($_POST['note'] ?? ''));
-    if ($task_id <= 0) {
-      $errors[] = 'Tarea no válida.';
+    $dur = (int)($_POST['duration'] ?? $duration);
+    if ($task_id <= 0 || !in_array($dur, [1,5,10], true)) {
+      echo json_encode(['ok' => false, 'error' => 'bad_params']);
+      exit;
+    }
+    $st = $pdo->prepare('INSERT INTO entries (user_id, task_id, duration, mood, note) VALUES (?,?,?,?,?)');
+    $st->execute([$uid, $task_id, $dur, null, null]);
+    $entryId = (int)$pdo->lastInsertId();
+    echo json_encode(['ok' => true, 'entry_id' => $entryId]);
+    exit;
+  }
+  if ($action === 'save') {
+    // Guardar/actualizar tras el formulario post-timer
+    if (!csrf_check($_POST['csrf'] ?? '')) {
+      $errors[] = 'Token CSRF inválido.';
     } else {
-      $st = $pdo->prepare('INSERT INTO entries (user_id, task_id, duration, mood, note) VALUES (?,?,?,?,?)');
-      $st->execute([$uid, $task_id, $duration, $mood, ($note !== '' ? $note : null)]);
-      $success = true;
+      $task_id = (int)($_POST['task_id'] ?? 0);
+      $entry_id = isset($_POST['entry_id']) ? (int)$_POST['entry_id'] : 0;
+      $mood = (isset($_POST['mood']) && $_POST['mood'] !== '') ? (int)$_POST['mood'] : null;
+      $note = trim((string)($_POST['note'] ?? ''));
+      if ($task_id <= 0) {
+        $errors[] = 'Tarea no válida.';
+      } else {
+        if ($entry_id > 0) {
+          // Actualiza la entrada creada en autosave
+          $st = $pdo->prepare('UPDATE entries SET mood=?, note=? WHERE id=? AND user_id=?');
+          $st->execute([$mood, ($note !== '' ? $note : null), $entry_id, $uid]);
+          $success = true;
+        } else {
+          // Inserta directamente si no hubo autosave
+          $st = $pdo->prepare('INSERT INTO entries (user_id, task_id, duration, mood, note) VALUES (?,?,?,?,?)');
+          $st->execute([$uid, $task_id, $duration, $mood, ($note !== '' ? $note : null)]);
+          $success = true;
+        }
+      }
     }
   }
 }
@@ -111,6 +143,7 @@ $titleForDuration = ($duration === 1)
             <input type="hidden" name="csrf" value="<?= e(csrf_token()) ?>">
             <input type="hidden" name="action" value="save">
             <input type="hidden" name="task_id" value="<?= (int)$task['id'] ?>">
+            <input type="hidden" name="entry_id" value="">
             <div>
               <label><strong>¿Cómo te sientes ahora?</strong></label>
               <div style="display:flex; gap:8px; margin-top:6px">
