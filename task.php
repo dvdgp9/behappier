@@ -62,7 +62,6 @@ $task = suggest_task($pdo, $uid, $duration);
     <div class="card" style="width:min(680px,100%)">
       <div style="display:flex; justify-content:space-between; align-items:center; gap:8px; margin-bottom:8px">
         <h1 class="h1" style="margin:0">Tu pequeña pausa</h1>
-        <a class="btn secondary" href="history.php">Historial</a>
       </div>
 
       <div class="stack-16">

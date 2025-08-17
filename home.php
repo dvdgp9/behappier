@@ -14,10 +14,6 @@ require_login();
           <a class="btn" href="task.php?d=5">5′</a>
           <a class="btn" href="task.php?d=10">10–15′</a>
         </div>
-        <div style="display:flex; gap:8px; justify-content:center">
-          <a class="btn secondary" href="history.php">Historial</a>
-          <a class="btn secondary" href="logout.php">Salir</a>
-        </div>
       </div>
     </div>
   </section>

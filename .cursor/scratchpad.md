@@ -55,7 +55,7 @@
 
 ## Project Status Board
 - [ ] Aprobación de dirección visual y assets (tipos/paleta OK; icon set y motion aprobados → implementar)
-- [ ] Validar modelo de datos y plan SQL
+- [x] Validar modelo de datos y plan SQL
 - [x] Decidir modo de auth → Password + "Recordarme" (expiración 30 días)
 - [x] Definir escala de estado de ánimo → 5 niveles (emojis doodle provisionales)
 - [ ] Confirmar catálogo inicial de 36 tareas o recibir listado definitivo
@@ -63,6 +63,9 @@
 - [ ] Alinear microcopy y tono (tratamiento de "tú" confirmado)
 - [x] Acordar lógica de rotación/evitar repetición de tareas → evitar últimas N=5
 - [ ] Plan de deploy en cPanel (dominio provisional: behappier.wthefox.com)
+ - [x] Repo inicializado y primer push en GitHub
+ - [x] Scaffolding básico: `index.php`, `register.php`, `home.php`, `task.php`, `history.php`, `logout.php`, `includes/*`, `partials/head.php`, `assets/styles.css`, `assets/app.js`
+ - [ ] API endpoints JSON (si se desea en v1): `/api/tasks.php`, `/api/save.php`, `/api/history.php`
 
 ## Current Status / Progress Tracking
 - Planner creado. Pendiente feedback de diseño y decisiones clave.
@@ -86,6 +89,11 @@
 - Directorios de assets creados: `assets/brand/`, `assets/icons/`, `assets/textures/`, `assets/fonts/`.
 - `data/schema.sql` y `data/seed.sql` listos para ejecutar.
 
+### Implementación MVP actual
+- Autenticación con sesión y "Recordarme" (tabla `auth_tokens`).
+- Páginas: login/registro (`index.php`, `register.php`), `home.php` (selector de duración), `task.php` (temporizador y guardado), `history.php` (últimas entradas).
+- Temporizador en `assets/app.js`. Estilos base y textura en `assets/styles.css`.
+
 ## Executor's Feedback or Assistance Requests
 - Diseños y decisiones requeridas del usuario:
   1. Marca: ¿wordmark/logotipo, favicon 32/180, textura de fondo tipo papel (archivo)?
@@ -108,9 +116,10 @@
 - Repetición de tareas: evitar las últimas N=5 por duración → OK.
 
 ### Acciones pendientes inmediatas
-- [USUARIO] Ejecutar `data/schema.sql` y luego `data/seed.sql` en la BD.
-- [USUARIO] Confirmar `DB_HOST` correcto (por defecto `localhost`).
-- [AMBOS] Crear repo GitHub y primer commit (sin `.env.php`).
+- [USUARIO] QA rápido: registro/login, selector de duración, temporizador, guardado y revisión en `history.php`.
+- [USUARIO] Probar "Recordarme" (cerrar navegador y volver a `home.php`).
+- [USUARIO] Confirmar `DB_HOST` (si es distinto de `localhost`).
+- [AMBOS] Ajustes visuales (tamaños, márgenes, tipografías) e iconos doodle.
 
 ## Lessons
 - (vacío)
