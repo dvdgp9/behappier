@@ -1,5 +1,20 @@
 // behappier — assets/app.js (MVP)
 (function(){
+  // Smooth page transition when clicking duration buttons on home
+  document.addEventListener('click', function(e){
+    const a = e.target.closest('a.btn.duration');
+    if (!a) return;
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || a.target === '_blank') return; // do not hijack new tab
+    e.preventDefault();
+    const href = a.getAttribute('href');
+    if (!href) return (window.location = a.href);
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+      window.location = href; return;
+    }
+    document.body.classList.add('leaving');
+    setTimeout(()=>{ window.location = href; }, 280);
+  }, {capture:true});
+
   const $ = (sel, el=document) => el.querySelector(sel);
   const timer = $('#timer');
   if (!timer) return;

@@ -4,16 +4,14 @@ require __DIR__ . '/includes/auth.php';
 require_login();
 ?>
 <?php include __DIR__ . '/partials/head.php'; ?>
-  <section class="center">
-    <div class="card" style="text-align:center; width:min(680px, 100%)">
-      <h1 class="h1">Tu momento de pausa</h1>
-      <p class="text-subtle">Elige una duración y te sugerimos algo amable para hacer.</p>
-      <div class="stack-16" style="margin-top:16px">
-        <div style="display:flex; gap:8px; flex-wrap:wrap; justify-content:center">
-          <a class="btn" href="task.php?d=1">1′</a>
-          <a class="btn" href="task.php?d=5">5′</a>
-          <a class="btn" href="task.php?d=10">10–15′</a>
-        </div>
+  <section class="hero desenfocado">
+    <div class="container" style="padding:18px 0">
+      <h1 class="brand" style="margin:0">Behappier,</h1>
+      <p class="subtitle">tu momento de pausa</p>
+      <div class="durations" style="margin-top:12px">
+        <a class="btn duration" href="task.php?d=1" aria-label="Empezar una pausa de 1 minuto">1′</a>
+        <a class="btn duration" href="task.php?d=5" aria-label="Empezar una pausa de 5 minutos">5′</a>
+        <a class="btn duration" href="task.php?d=10" aria-label="Empezar una pausa de 10 a 15 minutos">10–15′</a>
       </div>
     </div>
   </section>
