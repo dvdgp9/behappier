@@ -56,21 +56,22 @@ function suggest_task(PDO $pdo, int $uid, int $duration): ?array {
 }
 
 $task = suggest_task($pdo, $uid, $duration);
+// Título según duración elegida
+$titleForDuration = ($duration === 1)
+  ? 'Tu respiro de 1 minuto'
+  : (($duration === 5)
+    ? 'Recarga y conecta en 5 minutos'
+    : '10 minutos de conexión profunda');
 ?>
 <?php include __DIR__ . '/partials/head.php'; ?>
   <section class="center">
     <div class="card desenfocado" style="width:min(680px,100%)">
       <div style="display:flex; justify-content:space-between; align-items:center; gap:8px; margin-bottom:8px">
-        <h1 class="h1" style="margin:0">Tu pequeña pausa</h1>
+        <h1 class="h1" style="margin:0"><?= e($titleForDuration) ?></h1>
       </div>
 
       <div class="stack-16">
-        <div class="durations" role="group" aria-label="Duración de la pausa">
-          <a class="btn duration" href="?d=1" <?= $duration===1?'aria-current="true"':'' ?>>1′</a>
-          <a class="btn duration" href="?d=5" <?= $duration===5?'aria-current="true"':'' ?>>5′</a>
-          <a class="btn duration" href="?d=10" <?= $duration===10?'aria-current="true"':'' ?>>10–15′</a>
-        </div>
-
+        
         <?php if ($success): ?>
           <div class="success">¡Guardado! Gracias por cuidarte hoy. <a href="history.php">Ver historial</a></div>
         <?php endif; ?>
@@ -121,6 +122,12 @@ $task = suggest_task($pdo, $uid, $duration);
       </div>
     </div>
   </section>
+  <!-- Botón volver a Home (estilo icon-btn) -->
+  <a href="home.php" class="icon-btn back" aria-label="Volver a inicio" title="Volver">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <polyline points="15 18 9 12 15 6"></polyline>
+    </svg>
+  </a>
   <script src="assets/app.js"></script>
   <script>
     window.BEH_DURATION = <?= $duration ?>;
