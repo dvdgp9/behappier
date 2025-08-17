@@ -143,4 +143,10 @@
 
   // initial render
   render();
+  // Register service worker for PWA
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function(){
+      navigator.serviceWorker.register('/sw.js').catch(()=>{});
+    });
+  }
 })();

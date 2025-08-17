@@ -1,0 +1,25 @@
+{
+  "name": "behappier",
+  "short_name": "behappier",
+  "description": "Pequeñas prácticas para respirar, conectar y estar mejor.",
+  "start_url": "/home.php",
+  "scope": "/",
+  "display": "standalone",
+  "lang": "es-ES",
+  "background_color": "#FFF8F1",
+  "theme_color": "#4A3F35",
+  "icons": [
+    {
+      "src": "/assets/brand/Logo-behappier-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/brand/Logo-behappier-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

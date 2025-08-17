@@ -8,6 +8,11 @@ declare(strict_types=1);
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>behappier</title>
   <link rel="icon" href="assets/brand/favicon.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="assets/brand/Logo-behappier-180.png" sizes="180x180">
+  <link rel="manifest" href="assets/manifest.webmanifest">
+  <meta name="theme-color" content="#4A3F35">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/iconoir@latest/css/iconoir.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/styles.css">
