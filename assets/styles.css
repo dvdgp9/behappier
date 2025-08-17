@@ -51,17 +51,29 @@ small.help{color:#7d746b}
 .hero{margin:12px 0; border-radius:var(--radius); box-shadow:var(--shadow)}
 .hero .brand{font-family:"Patrick Hand", cursive; font-size:36px}
 .hero .subtitle{margin:4px 0 0; color:#6b6158}
-.duration-cards{display:grid; gap:12px; margin-top:16px; grid-template-columns:1fr}
-.duration-card{display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; text-decoration:none; color:var(--ink); transition:transform var(--motion), box-shadow var(--motion)}
-.duration-card .time{font-family:"Patrick Hand", cursive; font-size:38px; line-height:1}
-.duration-card .desc{margin-top:6px; color:#6b6158}
-.duration-card:hover{transform:translateY(-2px); box-shadow:0 12px 24px rgba(0,0,0,.14)}
-.duration-card:focus-visible{outline:3px solid var(--accent1); outline-offset:2px}
 .durations{display:flex; gap:10px; flex-wrap:wrap; align-items:center}
 .btn.duration{height:56px; padding:0 18px; border-radius:9999px; background:linear-gradient(180deg, var(--accent3), var(--accent2)); color:var(--ink); box-shadow:0 6px 16px rgba(0,0,0,.12); font-family:"Patrick Hand", cursive; font-size:20px; letter-spacing:.3px}
 .btn.duration:hover{transform:translateY(-2px); box-shadow:0 12px 24px rgba(0,0,0,.14)}
 .btn.duration:active{transform:translateY(0); box-shadow:0 6px 16px rgba(0,0,0,.12)}
 .btn.duration:focus-visible{outline:3px solid var(--accent1); outline-offset:2px}
+
+/* Chooser (botones apilados centrados) */
+.chooser{margin:12px 0; border-radius:var(--radius); box-shadow:var(--shadow)}
+.chooser .container{display:grid; justify-items:center; gap:12px; padding:24px 0}
+.chooser .helper{margin:0; color:#6b6158; font-size:15px}
+.chooser .durations{flex-direction:column; align-items:stretch; width:100%; max-width:520px}
+.chooser .btn.duration{width:100%}
+
+/* Microinteracciones y animaciones de entrada escalonadas */
+@keyframes fadeUp{from{opacity:0; transform:translateY(8px)} to{opacity:1; transform:none}}
+.chooser .helper{animation:fadeUp 220ms var(--motion) 20ms both}
+.chooser .durations a:nth-child(1){animation:fadeUp 240ms var(--motion) 60ms both}
+.chooser .durations a:nth-child(2){animation:fadeUp 240ms var(--motion) 100ms both}
+.chooser .durations a:nth-child(3){animation:fadeUp 240ms var(--motion) 140ms both}
+
+/* Efecto glass sutil en hover */
+.btn.duration{transition:transform var(--motion), box-shadow var(--motion), filter var(--motion), background 200ms ease}
+.btn.duration:hover{filter:saturate(1.06) brightness(1.03)}
 
 /* Page transition when leaving */
 @keyframes pageOut{to{opacity:0; transform:scale(.98); filter:blur(4px)}}
@@ -80,10 +92,6 @@ body.leaving main{animation: pageOut 280ms var(--motion) forwards}
   .btn.duration{height:52px; font-size:19px; padding:0 16px}
   .fab{right:14px; bottom:14px; width:48px; height:48px; border-radius:14px}
   .fab i{font-size:22px}
-}
-
-@media (min-width: 680px){
-  .duration-cards{grid-template-columns: repeat(3, 1fr)}
 }
 
 /* Desktop background and logout alignment */
