@@ -6,7 +6,8 @@ require_login();
 <?php include __DIR__ . '/partials/head.php'; ?>
   <section class="hero desenfocado">
     <div class="container" style="padding:18px 0">
-      <h1 class="brand" style="margin:0">Behappier,</h1>
+      <?php $u = current_user($pdo); $displayName = trim((string)($u['nombre'] ?? '')); ?>
+      <h1 class="brand" style="margin:0"><?= e($displayName !== '' ? $displayName : 'Behappier') ?>,</h1>
       <p class="subtitle">tu momento de pausa</p>
       <div class="durations" style="margin-top:12px">
         <a class="btn duration" href="task.php?d=1" aria-label="Empezar una pausa de 1 minuto">1′</a>

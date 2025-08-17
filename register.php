@@ -10,18 +10,19 @@ if (is_post()) {
   if (!csrf_check($_POST['csrf'] ?? '')) {
     $errors[] = 'Token CSRF inválido. Refresca la página.';
   } else {
+    $nombre = trim((string)($_POST['nombre'] ?? ''));
     $email = trim((string)($_POST['email'] ?? ''));
     $pass = (string)($_POST['password'] ?? '');
     $pass2 = (string)($_POST['password2'] ?? '');
-    if ($email === '' || $pass === '') {
-      $errors[] = 'Completa email y contraseña.';
+    if ($nombre === '' || $email === '' || $pass === '') {
+      $errors[] = 'Completa nombre, email y contraseña.';
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
       $errors[] = 'Email no válido.';
     } elseif ($pass !== $pass2) {
       $errors[] = 'Las contraseñas no coinciden.';
     } else {
       try {
-        $uid = register_user($pdo, $email, $pass);
+        $uid = register_user($pdo, $nombre, $email, $pass);
         $_SESSION['uid'] = $uid;
         redirect('home.php');
       } catch (Throwable $e) {
@@ -39,15 +40,19 @@ if (is_post()) {
   <section class="center">
     <div class="card" style="width:min(520px, 100%)">
       <h1 class="h1">Crear cuenta</h1>
-      <p class="text-subtle">Solo necesitas un email y una contraseña.</p>
+      <p class="text-subtle">Solo necesitas tu nombre, un email y una contraseña.</p>
       <?php if ($errors): ?>
         <div class="alert" style="margin-bottom:12px"><?= e(implode(' ', $errors)) ?></div>
       <?php endif; ?>
-      <form method="post" class="form stack-16" autocomplete="email">
+      <form method="post" class="form stack-16" autocomplete="on">
         <input type="hidden" name="csrf" value="<?= e(csrf_token()) ?>">
         <label>
+          <span>Nombre</span>
+          <input class="input" type="text" name="nombre" required autocomplete="name" autofocus>
+        </label>
+        <label>
           <span>Email</span>
-          <input class="input" type="email" name="email" required autofocus>
+          <input class="input" type="email" name="email" required autocomplete="email">
         </label>
         <label>
           <span>Contraseña</span>

@@ -15,7 +15,10 @@ declare(strict_types=1);
 <body>
 <header class="site-header">
   <div class="container header-inner">
-    <img src="assets/brand/Logo-behappier.png" alt="behappier" class="logo" width="140" height="auto">
+    <div class="brandline">
+      <img src="assets/brand/Logo-behappier-blanco.png" alt="behappier" class="logo" width="140" height="auto">
+      <span class="site-title">Behappier</span>
+    </div>
     <?php if (function_exists('current_user_id') && current_user_id()): ?>
       <a href="logout.php" class="icon-btn" aria-label="Cerrar sesión" title="Cerrar sesión">
         <svg width="24px" height="24px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor">

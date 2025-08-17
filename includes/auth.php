@@ -12,6 +12,19 @@ function current_user_id(): ?int {
   return isset($_SESSION['uid']) ? (int)$_SESSION['uid'] : null;
 }
 
+function find_user_by_id(PDO $pdo, int $id): ?array {
+  $st = $pdo->prepare('SELECT * FROM users WHERE id = ? LIMIT 1');
+  $st->execute([$id]);
+  $u = $st->fetch();
+  return $u ?: null;
+}
+
+function current_user(PDO $pdo): ?array {
+  $uid = current_user_id();
+  if (!$uid) return null;
+  return find_user_by_id($pdo, $uid);
+}
+
 function require_login(): void {
   if (!current_user_id()) {
     redirect('index.php');
@@ -25,10 +38,10 @@ function find_user_by_email(PDO $pdo, string $email): ?array {
   return $u ?: null;
 }
 
-function register_user(PDO $pdo, string $email, string $password): int {
+function register_user(PDO $pdo, string $nombre, string $email, string $password): int {
   $hash = password_hash($password, PASSWORD_DEFAULT);
-  $st = $pdo->prepare('INSERT INTO users (email, password_hash) VALUES (?, ?)');
-  $st->execute([$email, $hash]);
+  $st = $pdo->prepare('INSERT INTO users (email, nombre, password_hash) VALUES (?, ?, ?)');
+  $st->execute([$email, $nombre, $hash]);
   return (int)$pdo->lastInsertId();
 }
 

@@ -70,6 +70,9 @@
 ## Current Status / Progress Tracking
 - Planner creado. Pendiente feedback de diseño y decisiones clave.
 - UI: Integrado Iconoir; FAB Historial; icono logout con SVG inline; retirados atajos duplicados; fondo actualizado a `Fondo-behappier.jpg`; util `.desenfocado` lista (pendiente targets por pantalla).
+- UI/Branding: Header con brandline (logo blanco + texto "Behappier").
+- Personalización: Registro ahora captura `nombre` y backend guarda `users.nombre`; `home.php` saluda usando `nombre` (fallback a "Behappier").
+- Datos: `data/schema.sql` actualizado para incluir `users.nombre` en instalaciones nuevas.
 
 ### Decisiones confirmadas
 - Marca: wordmark por ahora; textura de fondo tipo papel: OK.
@@ -117,10 +120,11 @@
 - Repetición de tareas: evitar las últimas N=5 por duración → OK.
 
 ### Acciones pendientes inmediatas
+- [USUARIO] Ejecutar ALTER TABLE para añadir `users.nombre` en la BD existente (ver snippet en chat) y luego probar registro/login + saludo personalizado.
 - [USUARIO] QA rápido: registro/login, selector de duración, temporizador, guardado y revisión en `history.php`.
 - [USUARIO] Probar "Recordarme" (cerrar navegador y volver a `home.php`).
 - [USUARIO] Confirmar `DB_HOST` (si es distinto de `localhost`).
 - [AMBOS] Ajustes visuales (tamaños, márgenes, tipografías) e iconos doodle.
 
 ## Lessons
-- (vacío)
+- Para añadir una columna NOT NULL en una tabla existente: 1) ADD COLUMN como NULL; 2) Rellenar valores; 3) MODIFY a NOT NULL. Evita errores en BD con filas existentes.
