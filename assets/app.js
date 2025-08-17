@@ -32,6 +32,23 @@
   const btnReset = $('[data-action="reset"]', timer);
   const postForm = $('#post-timer');
 
+  // End-of-timer sound
+  const endSound = new Audio('assets/sfx/timer-end.mp3');
+  endSound.preload = 'auto';
+  let soundPrimed = false;
+  function primeSound(){
+    if (soundPrimed) return;
+    try {
+      endSound.muted = true;
+      const p = endSound.play();
+      if (p && p.then){
+        p.then(()=>{ endSound.pause(); endSound.currentTime = 0; endSound.muted = false; soundPrimed = true; }).catch(()=>{});
+      } else {
+        endSound.pause(); endSound.currentTime = 0; endSound.muted = false; soundPrimed = true;
+      }
+    } catch (e) { /* ignore */ }
+  }
+
   function fmt(s){
     const m = Math.floor(s/60).toString().padStart(2,'0');
     const ss = Math.floor(s%60).toString().padStart(2,'0');
@@ -60,6 +77,8 @@
 
   function start(){
     if (running) return;
+    // Prime audio on first explicit user start to avoid autoplay blocks
+    primeSound();
     running = true; lastTick = null;
     rafId = requestAnimationFrame(tick);
   }
@@ -77,6 +96,8 @@
 
   function finish(){
     pause(); render();
+    // play end sound (best-effort)
+    try { endSound.currentTime = 0; endSound.play().catch(()=>{}); } catch (e) {}
     // reveal post-form
     if (postForm){ postForm.style.display = ''; }
     timer.style.display = 'none';
