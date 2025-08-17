@@ -57,3 +57,9 @@ small.help{color:#7d746b}
   .fab{right:14px; bottom:14px; width:48px; height:48px; border-radius:14px}
   .fab i{font-size:22px}
 }
+
+/* Desktop background and logout alignment */
+@media (min-width: 900px){
+  body{ background-image: url('textures/fondo-pc-behappier.jpg'); }
+  .site-header .icon-btn{ position:fixed; top:16px; right:20px; z-index:1100 }
+}
