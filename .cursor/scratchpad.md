@@ -69,6 +69,7 @@
 
 ## Current Status / Progress Tracking
 - Planner creado. Pendiente feedback de diseño y decisiones clave.
+- UI: Integrado Iconoir; FAB Historial; icono logout con SVG inline; retirados atajos duplicados; fondo actualizado a `Fondo-behappier.jpg`; util `.desenfocado` lista (pendiente targets por pantalla).
 
 ### Decisiones confirmadas
 - Marca: wordmark por ahora; textura de fondo tipo papel: OK.
