@@ -30,18 +30,18 @@ function rel_day_label(string $createdAt): string {
 ?>
 <?php include __DIR__ . '/partials/head.php'; ?>
   <section class="center">
-    <div class="card" style="width:min(820px,100%)">
-      <div style="display:flex; justify-content:space-between; align-items:center; gap:8px; margin-bottom:8px">
+    <div class="card history" style="width:min(680px,96%)">
+      <div class="history-header" style="display:flex; justify-content:space-between; align-items:center; gap:8px; margin-bottom:8px">
         <h1 class="h1" style="margin:0">Historial</h1>
       </div>
 
       <?php if (!$rows): ?>
         <div class="alert">Aún no tienes registros. Empieza con una pausa de 1′.</div>
       <?php else: ?>
-        <div class="stack-16">
+        <div class="stack-16 history-list">
           <?php foreach ($rows as $r): ?>
             <article class="card" style="display:flex; gap:12px; align-items:center">
-              <div style="min-width:64px; text-align:center; font-family:'Patrick Hand',cursive; font-size:20px">
+              <div class="dur-col" style="min-width:64px; text-align:center; font-family:'Patrick Hand',cursive; font-size:20px">
                 <?= (int)$r['duration'] === 10 ? '10–15′' : e((string)$r['duration']) . '′' ?>
               </div>
               <div style="flex:1 1 auto">
@@ -53,7 +53,7 @@ function rel_day_label(string $createdAt): string {
                   <div><small class="help">«<?= e($r['note']) ?>»</small></div>
                 <?php endif; ?>
               </div>
-              <div style="min-width:150px; text-align:right"><small class="help"><?= e(rel_day_label((string)$r['created_at'])) ?></small></div>
+              <div class="date-col" style="min-width:150px; text-align:right"><small class="help"><?= e(rel_day_label((string)$r['created_at'])) ?></small></div>
             </article>
           <?php endforeach; ?>
         </div>

@@ -44,3 +44,16 @@ small.help{color:#7d746b}
 
 /* Desenfoque contextual sobre el fondo para mejorar legibilidad */
 .desenfocado{background:rgba(255,255,255,0.55); -webkit-backdrop-filter: blur(7px) saturate(1.05); backdrop-filter: blur(7px) saturate(1.05);}
+
+/* Responsive tweaks */
+@media (max-width: 600px){
+  .h1{font-size:22px}
+  .card{padding:16px}
+  .history{padding:16px}
+  .history-list .card{padding:12px}
+  .history-list .dur-col{min-width:44px; font-size:18px}
+  .history-list .date-col{min-width:auto}
+  .history-list .date-col small{font-size:12px; white-space:nowrap}
+  .fab{right:14px; bottom:14px; width:48px; height:48px; border-radius:14px}
+  .fab i{font-size:22px}
+}
