@@ -33,6 +33,7 @@ small.help{color:#7d746b}
 .icon-btn{display:inline-flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:12px; color:var(--ink); background:#ffffffaa; text-decoration:none; transition:transform var(--motion), box-shadow var(--motion)}
 .icon-btn:hover{transform:translateY(-1px); box-shadow:0 6px 16px rgba(0,0,0,.12)}
 .icon-btn i{font-size:20px; line-height:1}
+.icon-btn svg{width:22px; height:22px; display:block}
 
 /* Floating Action Button (bottom-right) */
 .fab{position:fixed; right:20px; bottom:20px; z-index:1000; width:52px; height:52px; border-radius:16px; display:flex; align-items:center; justify-content:center; background:var(--ink); color:#fff; text-decoration:none; box-shadow:var(--shadow); transition:transform var(--motion), box-shadow var(--motion)}

@@ -19,12 +19,6 @@ $rows = $st->fetchAll();
     <div class="card" style="width:min(820px,100%)">
       <div style="display:flex; justify-content:space-between; align-items:center; gap:8px; margin-bottom:8px">
         <h1 class="h1" style="margin:0">Historial</h1>
-        <div style="display:flex; gap:8px">
-          <a class="btn secondary" href="home.php">Inicio</a>
-          <a class="btn secondary" href="task.php?d=1">1′</a>
-          <a class="btn secondary" href="task.php?d=5">5′</a>
-          <a class="btn secondary" href="task.php?d=10">10–15′</a>
-        </div>
       </div>
 
       <?php if (!$rows): ?>
