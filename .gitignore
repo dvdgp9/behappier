@@ -1,0 +1,8 @@
+# Sensible
+.env.php
+*.log
+.DS_Store
+
+# Editor/IDE
+.vscode/
+.idea/

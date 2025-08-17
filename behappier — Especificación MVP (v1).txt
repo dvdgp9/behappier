@@ -1,0 +1,158 @@
+behappier — Especificación MVP (v1)
+
+0) Resumen del producto
+
+Objetivo: App minimalista y “handmade” que sugiere tareas cortas (1′, 5′ o más) para entrenar presencia y reflexión. Uso personal, con sincronización desde el inicio para que cualquier dispositivo muestre lo mismo al iniciar sesión en navegador.
+
+Principios:
+
+Sencillez radical: una sola decisión (tiempo disponible) → la app propone.
+
+Diseño amable, artesanal, sin apariencia de app moderna.
+
+Contenido accionable, positivo y no invasivo.
+
+Microcopys cuidados para transmitir cercanía y acompañamiento.
+
+1) Alcance del MVP
+
+1.1 Funcionalidades incluidas
+
+Autenticación de usuario: login simple (email + contraseña o passcode). Cada usuario ve siempre su historial y datos en cualquier dispositivo.
+
+Selector de duración: 1′, 5′, 10–15′ ("más").
+
+Propuesta automática de una tarea en base a la duración.
+
+Ejecución de tarea con temporizador y micro-instrucciones.
+
+Registro opcional: texto libre al finalizar (2–3 líneas) y estado de ánimo (emoji/escala simple).
+
+Historial: últimas 10 tareas, fecha, nota, duración, estado de ánimo.
+
+Diseño minimalista y “cute”: colores suaves, iconografía simple, tipografía manuscrita sin Comic Sans.
+
+1.2 Fuera de alcance en v1 (roadmap)
+
+Service Worker (modo offline básico) → se pospone a v1.1.
+
+Catálogo dinámico por IA o recomendaciones adaptativas avanzadas (v2).
+
+Compartir a redes o con terceros (no aplica).
+
+2) UX y flujo principal
+
+Pantalla Login → email + contraseña/passcode; mensaje de bienvenida amable (ej: "Hola de nuevo, ¿listo para un ratito contigo?").
+
+Pantalla Inicio → "¿Cuánto tiempo tienes ahora?" Botones: 1′, 5′, 10–15′.
+
+Propuesta → tarea (título, 1–2 líneas de guía, botón "Empezar").
+
+Ejecución → temporizador visible, consejos breves; botón "Hecho" y "Otra propuesta".
+
+Cierre → Mini-check-in (emoji estado de ánimo) + caja de nota opcional (máx. 240 caracteres) + Guardar.
+
+Historial → lista simple (fecha, duración, tarea, emoji, nota). Botón "Volver a Inicio".
+
+Microcopys de ejemplo (acompañamiento):
+
+Inicio: "Presencia en pequeñas dosis"; "Elige el tiempo y yo te acompaño".
+
+Propuesta: "Esto solo te llevará 1 minuto"; "Cuando quieras, pulsa Empezar".
+
+Cierre: "¿Cómo te sientes ahora mismo?"; "Si quieres, escribe algo corto para ti".
+
+3) Catálogo inicial de tareas (MVP)
+
+36 tareas iniciales (12 por bloque). Lenguaje directo, amable, sin jerga.
+
+(Se mantienen las tareas listadas en la versión anterior)
+
+4) Diseño visual (guía rápida)
+
+Tipografía: manuscrita suave (ej. "Patrick Hand" u otra similar, pero nunca Comic Sans). Solo títulos y botones con esta tipografía; cuerpo en sans neutra para legibilidad.
+
+Paleta (suave, cálida):
+
+Fondo: #FFF8F1
+
+Tinta: #4A3F35
+
+Acento 1: #F0C6AA
+
+Acento 2: #C8E6D0
+
+Acento 3: #E8DFF5
+
+Iconografía: líneas simples, estilo doodle.
+
+Botones: grandes, bordes 16–20px, sombras suaves, hover mínimo.
+
+Animación: micro transiciones al 120–160ms, easing suave.
+
+Layout: tarjetas con padding generoso; mucho espacio en blanco.
+
+5) Arquitectura y stack (v1)
+
+Frontend: HTML + CSS + JS vanilla.
+
+Backend: PHP 8.x (cPanel) + MySQL.
+
+Auth: sistema de usuarios (tabla users con email y hash de contraseña/passcode). Sesión mantenida por cookie segura.
+
+Sincronización: todas las notas, estados de ánimo e historial se guardan en la BD y se muestran al iniciar sesión en cualquier navegador.
+
+Estructura de archivos
+
+/ (raíz)
+  index.php              # Login o redirect a inicio si ya está logueado
+  home.php               # Inicio y selector de duración
+  task.php               # Propuesta + ejecución
+  save.php               # Guardado de notas y estado de ánimo (POST)
+  history.php            # Historial
+  /api/
+    tasks.php            # GET ?duration=1|5|10 -> JSON de tarea
+    save.php             # POST {task_id, duration, mood, note}
+  /assets/
+    styles.css
+    app.js
+    icons/*
+  /data/
+    seed.sql
+  /.env.php              # TOKEN_PRIVADO, DB creds
+
+6) Modelo de datos (MySQL)
+
+Nuevas tablas
+
+CREATE TABLE users (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  email VARCHAR(120) NOT NULL UNIQUE,
+  password_hash VARCHAR(255) NOT NULL,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+ALTER TABLE entries ADD COLUMN user_id INT NOT NULL,
+  ADD FOREIGN KEY (user_id) REFERENCES users(id);
+
+(Las tablas tasks, entries y settings se mantienen como antes, añadiendo user_id a entries para la sincronización personalizada.)
+
+7) API mínima (endpoints)
+
+POST /api/login.php → recibe email + password, responde con sesión.
+
+POST /api/register.php → crea usuario nuevo.
+
+GET /api/tasks.php?duration=1|5|10 → devuelve tarea.
+
+POST /api/save.php → guarda entrada vinculada al user_id de la sesión.
+
+GET /api/history.php?limit=10 → devuelve historial del usuario.
+
+8) Consideraciones adicionales
+
+Microcopys y mensajes siempre cálidos, evitando tono frío o automático.
+
+Sin Comic Sans bajo ningún concepto.
+
+Service Worker y modo offline se dejan para v1.1.
