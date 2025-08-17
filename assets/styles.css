@@ -52,7 +52,7 @@ small.help{color:#7d746b}
 .hero .brand{font-family:"Patrick Hand", cursive; font-size:36px}
 .hero .subtitle{margin:4px 0 0; color:#6b6158}
 .durations{display:flex; gap:10px; flex-wrap:wrap; align-items:center}
-.btn.duration{height:56px; padding:0 18px; border-radius:9999px; background:linear-gradient(180deg, var(--accent3), var(--accent2)); color:var(--ink); box-shadow:0 6px 16px rgba(0,0,0,.12); font-family:"Patrick Hand", cursive; font-size:20px; letter-spacing:.3px}
+.btn.duration{height:56px; padding:0 18px; background: #ffffff44;; color:var(--ink); box-shadow:0 6px 16px rgba(0,0,0,.12); font-family:"Patrick Hand", cursive; font-size:20px; letter-spacing:.3px}
 .btn.duration:hover{transform:translateY(-2px); box-shadow:0 12px 24px rgba(0,0,0,.14)}
 .btn.duration:active{transform:translateY(0); box-shadow:0 6px 16px rgba(0,0,0,.12)}
 .btn.duration:focus-visible{outline:3px solid var(--accent1); outline-offset:2px}

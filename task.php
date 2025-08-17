@@ -59,7 +59,7 @@ $task = suggest_task($pdo, $uid, $duration);
 ?>
 <?php include __DIR__ . '/partials/head.php'; ?>
   <section class="center">
-    <div class="card" style="width:min(680px,100%)">
+    <div class="card desenfocado" style="width:min(680px,100%)">
       <div style="display:flex; justify-content:space-between; align-items:center; gap:8px; margin-bottom:8px">
         <h1 class="h1" style="margin:0">Tu pequeña pausa</h1>
       </div>
@@ -79,7 +79,7 @@ $task = suggest_task($pdo, $uid, $duration);
         <?php endif; ?>
 
         <?php if ($task): ?>
-          <article class="card" style="background:#fff9f5">
+          <article class="card desenfocado">
             <h2 class="h1" style="font-size:24px; margin-bottom:6px"><?= e($task['title']) ?></h2>
             <p class="text-subtle" style="margin:0 0 8px"><?= e($task['guidance']) ?></p>
             <div id="timer" data-mins="<?= $duration ?>" class="stack-16">
@@ -92,7 +92,7 @@ $task = suggest_task($pdo, $uid, $duration);
             </div>
           </article>
 
-          <form method="post" class="form stack-16" id="post-timer" style="display:none">
+          <form method="post" class="form stack-16 card desenfocado" id="post-timer" style="display:none">
             <input type="hidden" name="csrf" value="<?= e(csrf_token()) ?>">
             <input type="hidden" name="action" value="save">
             <input type="hidden" name="task_id" value="<?= (int)$task['id'] ?>">

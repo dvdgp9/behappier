@@ -16,9 +16,9 @@ require_login();
     <div class="container" style="padding:18px 0">
       <p class="helper" style="margin-bottom:10px">¿Cuánto tiempo quieres dedicarte?</p>
       <div class="durations" role="group" aria-label="Duración de la pausa">
-        <a class="btn duration" href="task.php?d=1" aria-label="Empezar una pausa de 1 minuto">1′</a>
-        <a class="btn duration" href="task.php?d=5" aria-label="Empezar una pausa de 5 minutos">5′</a>
-        <a class="btn duration" href="task.php?d=10" aria-label="Empezar una pausa de 10 a 15 minutos">10–15′</a>
+        <a class="btn duration" href="task.php?d=1" aria-label="Empezar una pausa de 1 minuto">1′ - Un respiro rápido</a>
+        <a class="btn duration" href="task.php?d=5" aria-label="Empezar una pausa de 5 minutos">5′ - Una recarga breve</a>
+        <a class="btn duration" href="task.php?d=10" aria-label="Empezar una pausa de 10 a 15 minutos">10' - Una conexión profunda</a>
       </div>
     </div>
   </section>
