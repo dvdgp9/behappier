@@ -1,0 +1,602 @@
+[
+  {
+    "category": "Respiración & calma",
+    "duration": "1",
+    "title": "Respiración cuadrada x3",
+    "description": "Inhala 4, retén 4, exhala 4, retén 4. Repite tres ciclos notando cómo se calma tu ritmo."
+  },
+  {
+    "category": "Respiración & calma",
+    "duration": "1",
+    "title": "Exhala más largo (4–6)",
+    "description": "Respira suave: inhala 4 y exhala 6 durante un minuto para soltar tensión."
+  },
+  {
+    "category": "Respiración & calma",
+    "duration": "1",
+    "title": "Cuenta 10 respiraciones",
+    "description": "Cuenta mentalmente de 1 a 10 cada respiración; si te distraes, vuelve a 1 con paciencia."
+  },
+  {
+    "category": "Respiración & calma",
+    "duration": "1",
+    "title": "Manos en vientre y pecho",
+    "description": "Coloca una mano en el vientre y otra en el pecho y siente el movimiento del aire al entrar y salir."
+  },
+  {
+    "category": "Respiración & calma",
+    "duration": "1",
+    "title": "Suspiro doble x3",
+    "description": "Haz un suspiro doble por la nariz (corto+corto) y exhala largo por la boca; repite tres veces."
+  },
+  {
+    "category": "Respiración & calma",
+    "duration": "1",
+    "title": "“Aquí” al exhalar",
+    "description": "En cada exhalación di en silencio “aquí”, reconectando con lo que estás viviendo ahora."
+  },
+  {
+    "category": "Sentidos al presente",
+    "duration": "1",
+    "title": "3-2-1 sentidos",
+    "description": "Nombra 3 cosas que ves, 2 que oyes y 1 que sientes en la piel."
+  },
+  {
+    "category": "Sentidos al presente",
+    "duration": "1",
+    "title": "Luces y sombras",
+    "description": "Observa las luces y sombras a tu alrededor sin juzgar, solo reconociendo formas."
+  },
+  {
+    "category": "Sentidos al presente",
+    "duration": "1",
+    "title": "Un olor, una palabra",
+    "description": "Percibe un olor cercano y descríbelo con una sola palabra."
+  },
+  {
+    "category": "Sentidos al presente",
+    "duration": "1",
+    "title": "Textura y temperatura",
+    "description": "Toca una textura (madera, tela, metal) y nota su temperatura y superficie."
+  },
+  {
+    "category": "Sentidos al presente",
+    "duration": "1",
+    "title": "Sonido lejano",
+    "description": "Busca el sonido más lejano que alcances a oír y quédate con él unos segundos."
+  },
+  {
+    "category": "Sentidos al presente",
+    "duration": "1",
+    "title": "Un color dominante",
+    "description": "Mira por la ventana 60 s y nombra el color que predomina ahora mismo."
+  },
+  {
+    "category": "Movimiento suave",
+    "duration": "1",
+    "title": "Hombros adelante y atrás",
+    "description": "Rueda los hombros 10 veces hacia delante y 10 hacia atrás soltando rigidez."
+  },
+  {
+    "category": "Movimiento suave",
+    "duration": "1",
+    "title": "Cuello en tres direcciones",
+    "description": "Inclina la cabeza a derecha, izquierda y abajo (10 s cada una) con suavidad."
+  },
+  {
+    "category": "Movimiento suave",
+    "duration": "1",
+    "title": "Manos despiertas",
+    "description": "Abre y cierra las manos 20 veces; siente el cosquilleo activando la circulación."
+  },
+  {
+    "category": "Movimiento suave",
+    "duration": "1",
+    "title": "Postura atenta",
+    "description": "Endereza la espalda, baja hombros, afloja mandíbula y respira 3 veces así."
+  },
+  {
+    "category": "Movimiento suave",
+    "duration": "1",
+    "title": "Sacudir y observar",
+    "description": "Sacude brazos y piernas 30 s y después observa el cuerpo 30 s en quietud."
+  },
+  {
+    "category": "Movimiento suave",
+    "duration": "1",
+    "title": "Estira gemelos",
+    "description": "Apoya manos en la pared y estira cada gemelo 30 s notando el alargamiento."
+  },
+  {
+    "category": "Entorno que acompaña",
+    "duration": "1",
+    "title": "Orden exprés",
+    "description": "Elige un solo objeto fuera de lugar y devuélvelo a su sitio."
+  },
+  {
+    "category": "Entorno que acompaña",
+    "duration": "1",
+    "title": "Limpieza consciente",
+    "description": "Limpia una pequeña superficie (pantalla o mesa) prestando atención al gesto."
+  },
+  {
+    "category": "Entorno que acompaña",
+    "duration": "1",
+    "title": "Luz y aire amable",
+    "description": "Abre una ventana o ajusta la luz para que el ambiente te resulte más amable."
+  },
+  {
+    "category": "Entorno que acompaña",
+    "duration": "1",
+    "title": "Vaso de agua presente",
+    "description": "Bebe un vaso de agua notando su temperatura y su recorrido por el cuerpo."
+  },
+  {
+    "category": "Entorno que acompaña",
+    "duration": "1",
+    "title": "Tocar vida verde",
+    "description": "Riega una planta o acaricia una hoja con cuidado, apreciando su textura."
+  },
+  {
+    "category": "Entorno que acompaña",
+    "duration": "1",
+    "title": "Espacio de foco",
+    "description": "Guarda una sola cosa que te distrae ahora mismo y respira el vacío que queda."
+  },
+  {
+    "category": "Mente, emoción y gratitud",
+    "duration": "1",
+    "title": "Ponle nombre a la emoción",
+    "description": "Nómbrala en una palabra (p. ej., “nervioso”, “tranquilo”) sin juzgarla."
+  },
+  {
+    "category": "Mente, emoción y gratitud",
+    "duration": "1",
+    "title": "Intención en 7 palabras",
+    "description": "Formula tu intención para la próxima hora en siete palabras o menos."
+  },
+  {
+    "category": "Mente, emoción y gratitud",
+    "duration": "1",
+    "title": "Una gratitud de hoy",
+    "description": "Piensa en una cosa por la que dar gracias hoy y sosténla unos segundos."
+  },
+  {
+    "category": "Mente, emoción y gratitud",
+    "duration": "1",
+    "title": "¿Qué necesito ahora?",
+    "description": "Pregúntate eso y nómbralo con honestidad; basta con una palabra o frase corta."
+  },
+  {
+    "category": "Mente, emoción y gratitud",
+    "duration": "1",
+    "title": "Sonrisa suave",
+    "description": "Sonríe suavemente durante 30 s y percibe cómo cambia el cuerpo."
+  },
+  {
+    "category": "Mente, emoción y gratitud",
+    "duration": "1",
+    "title": "Dos frases de estado",
+    "description": "Escribe dos frases breves sobre cómo estás ahora mismo."
+  },
+  {
+    "category": "Presencia con los demás",
+    "duration": "1",
+    "title": "Un buen deseo en silencio",
+    "description": "Piensa en alguien y deséale bienestar en silencio."
+  },
+  {
+    "category": "Presencia con los demás",
+    "duration": "1",
+    "title": "Escuchar antes de responder",
+    "description": "Comprométete a dejar 10 s de escucha antes de contestar la próxima vez."
+  },
+  {
+    "category": "Presencia con los demás",
+    "duration": "1",
+    "title": "Rostro relajado",
+    "description": "Relaja mandíbula, frente y lengua para suavizar tu expresión."
+  },
+  {
+    "category": "Presencia con los demás",
+    "duration": "1",
+    "title": "Frase amable preparada",
+    "description": "Elige una frase breve que puedas usar hoy (p. ej., “Gracias por…”)."
+  },
+  {
+    "category": "Presencia con los demás",
+    "duration": "1",
+    "title": "Tono interno amigo",
+    "description": "Observa cómo te hablas y cambia a un tono de buen amigo."
+  },
+  {
+    "category": "Presencia con los demás",
+    "duration": "1",
+    "title": "Admira una cualidad",
+    "description": "Nota una cosa que admiras de alguien cercano y reconócela mentalmente."
+  },
+  {
+    "category": "Respiración & calma",
+    "duration": "1",
+    "title": "Parpadeo consciente",
+    "description": "Parpadea suavemente durante 30 s y deja descansar la vista otros 30 s."
+  },
+  {
+    "category": "Respiración & calma",
+    "duration": "1",
+    "title": "Respira por la nariz",
+    "description": "Inhala y exhala solo por la nariz durante un minuto, de forma cómoda."
+  },
+  {
+    "category": "Respiración & calma",
+    "duration": "1",
+    "title": "Exhala con susurro",
+    "description": "Exhala con un susurro suave (como “haa”) y nota cómo se relaja el pecho."
+  },
+  {
+    "category": "Respiración & calma",
+    "duration": "1",
+    "title": "Cuenta atrás 5→1",
+    "description": "Respira y cuenta mentalmente 5,4,3,2,1 con cada exhalación."
+  },
+  {
+    "category": "Sentidos al presente",
+    "duration": "1",
+    "title": "Cierra los ojos 30 s",
+    "description": "Cierra los ojos medio minuto y nota 3 sensaciones internas al abrirlos."
+  },
+  {
+    "category": "Sentidos al presente",
+    "duration": "1",
+    "title": "Busca formas redondas",
+    "description": "Detecta a tu alrededor 3 objetos con bordes redondeados."
+  },
+  {
+    "category": "Sentidos al presente",
+    "duration": "1",
+    "title": "Ritmo del entorno",
+    "description": "Percibe cualquier ritmo presente (teclado, pasos, viento) sin intervenir."
+  },
+  {
+    "category": "Sentidos al presente",
+    "duration": "1",
+    "title": "Temperatura del aire",
+    "description": "Nota si el aire se siente más fresco al inhalar y más tibio al exhalar."
+  },
+  {
+    "category": "Movimiento suave",
+    "duration": "1",
+    "title": "Tobillos activos",
+    "description": "Rota cada tobillo 10 veces en cada dirección con suavidad."
+  },
+  {
+    "category": "Movimiento suave",
+    "duration": "1",
+    "title": "Extensión de brazos",
+    "description": "Eleva brazos al inhalar y bájalos al exhalar, 6 repeticiones."
+  },
+  {
+    "category": "Movimiento suave",
+    "duration": "1",
+    "title": "Columna larga",
+    "description": "Alarga coronilla hacia arriba y coxis hacia abajo durante 60 s."
+  },
+  {
+    "category": "Movimiento suave",
+    "duration": "1",
+    "title": "Estira muñecas",
+    "description": "Con suavidad, estira la palma hacia ti y luego al revés, 15 s por lado."
+  },
+  {
+    "category": "Entorno que acompaña",
+    "duration": "1",
+    "title": "Pantalla en orden",
+    "description": "Cierra una pestaña o app que no necesitas ahora mismo."
+  },
+  {
+    "category": "Entorno que acompaña",
+    "duration": "1",
+    "title": "Cables recogidos",
+    "description": "Ordena un cable o accesorio suelto para despejar visualmente."
+  },
+  {
+    "category": "Entorno que acompaña",
+    "duration": "1",
+    "title": "Aroma amable",
+    "description": "Acerca una infusión, café o esencia y toma 3 respiraciones con su aroma."
+  },
+  {
+    "category": "Entorno que acompaña",
+    "duration": "1",
+    "title": "Silla ajustada",
+    "description": "Ajusta ligeramente la posición de la silla para apoyar mejor la espalda."
+  },
+  {
+    "category": "Mente, emoción y gratitud",
+    "duration": "1",
+    "title": "Etiqueta el pensamiento",
+    "description": "Cuando surja un pensamiento, nómbralo (“planificando”, “recordando”) y suéltalo."
+  },
+  {
+    "category": "Mente, emoción y gratitud",
+    "duration": "1",
+    "title": "Mini mantra personal",
+    "description": "Repite mentalmente una frase breve que te calme (p. ej., “Estoy aquí”)."
+  },
+  {
+    "category": "Mente, emoción y gratitud",
+    "duration": "1",
+    "title": "Una micro-meta",
+    "description": "Define una sola cosa pequeña que quieras hacer hoy."
+  },
+  {
+    "category": "Mente, emoción y gratitud",
+    "duration": "1",
+    "title": "Respeto a mi ritmo",
+    "description": "Reconoce: “Hoy iré a mi ritmo” y respira 3 veces con esa idea."
+  },
+  {
+    "category": "Presencia con los demás",
+    "duration": "1",
+    "title": "Respira antes de hablar",
+    "description": "Antes de tu próxima frase, toma una respiración tranquila."
+  },
+  {
+    "category": "Presencia con los demás",
+    "duration": "1",
+    "title": "Mirada amable",
+    "description": "Suaviza la mirada y la expresión facial por 60 s."
+  },
+  {
+    "category": "Presencia con los demás",
+    "duration": "1",
+    "title": "Agradece en silencio",
+    "description": "Piensa en alguien y agradécele algo concreto, en silencio."
+  },
+  {
+    "category": "Presencia con los demás",
+    "duration": "1",
+    "title": "Espalda contra respaldo",
+    "description": "Apoya la espalda y suelta los hombros para abrir el pecho."
+  },
+  {
+    "category": "Respiración & calma",
+    "duration": "1",
+    "title": "Tres respiraciones profundas",
+    "description": "Toma tres inhalaciones amplias por la nariz y exhala largo por la boca, relajando hombros."
+  },
+  {
+    "category": "Respiración & calma",
+    "duration": "1",
+    "title": "Bostezo consciente",
+    "description": "Provoca un bostezo suave y deja que el cuerpo se afloje mientras exhalas."
+  },
+  {
+    "category": "Respiración & calma",
+    "duration": "1",
+    "title": "Exhala en 7",
+    "description": "Inhala cómodo y exhala contando hasta 7, aflojando la mandíbula."
+  },
+  {
+    "category": "Respiración & calma",
+    "duration": "1",
+    "title": "Abdomen globo",
+    "description": "Imagina que el abdomen es un globo que se infla al inhalar y se desinfla al exhalar."
+  },
+  {
+    "category": "Respiración & calma",
+    "duration": "1",
+    "title": "Pausa tras exhalar",
+    "description": "Haz una breve pausa de 1–2 s tras cada exhalación, sin forzar."
+  },
+  {
+    "category": "Respiración & calma",
+    "duration": "1",
+    "title": "Labios fruncidos",
+    "description": "Exhala con labios ligeramente fruncidos para alargar la salida del aire."
+  },
+  {
+    "category": "Respiración & calma",
+    "duration": "1",
+    "title": "Hombros que caen",
+    "description": "Con cada exhalación, deja que los hombros desciendan un poco más."
+  },
+  {
+    "category": "Respiración & calma",
+    "duration": "1",
+    "title": "Mano en abdomen",
+    "description": "Coloca una mano sobre el abdomen y siente cómo sube y baja al respirar."
+  },
+  {
+    "category": "Sentidos al presente",
+    "duration": "1",
+    "title": "Tres líneas rectas",
+    "description": "Encuentra 3 líneas rectas a tu alrededor y síguelas con la mirada."
+  },
+  {
+    "category": "Sentidos al presente",
+    "duration": "1",
+    "title": "Cinco tonos de color",
+    "description": "Detecta 5 tonos de color distintos en tu entorno inmediato."
+  },
+  {
+    "category": "Sentidos al presente",
+    "duration": "1",
+    "title": "Un detalle diminuto",
+    "description": "Busca un detalle pequeño que nunca hayas notado y obsérvalo 10 s."
+  },
+  {
+    "category": "Sentidos al presente",
+    "duration": "1",
+    "title": "Sombras que se mueven",
+    "description": "Observa las sombras y su movimiento sutil durante un minuto."
+  },
+  {
+    "category": "Sentidos al presente",
+    "duration": "1",
+    "title": "Sabor de un sorbo",
+    "description": "Toma un sorbo de agua o bebida y siente su sabor y temperatura."
+  },
+  {
+    "category": "Sentidos al presente",
+    "duration": "1",
+    "title": "Temperatura de las manos",
+    "description": "Junta las manos y percibe si están frías o templadas."
+  },
+  {
+    "category": "Sentidos al presente",
+    "duration": "1",
+    "title": "Silencio entre sonidos",
+    "description": "Presta atención a los espacios de silencio entre los sonidos."
+  },
+  {
+    "category": "Sentidos al presente",
+    "duration": "1",
+    "title": "Dos texturas distintas",
+    "description": "Toca dos texturas diferentes y compara su sensación en los dedos."
+  },
+  {
+    "category": "Movimiento suave",
+    "duration": "1",
+    "title": "Torsión sentada",
+    "description": "Sentado, gira el tronco suavemente a un lado y al otro, respirando lento."
+  },
+  {
+    "category": "Movimiento suave",
+    "duration": "1",
+    "title": "Abrir pecho detrás",
+    "description": "Entrecruza manos detrás de la espalda y abre el pecho sin forzar."
+  },
+  {
+    "category": "Movimiento suave",
+    "duration": "1",
+    "title": "Flex y punta de pies",
+    "description": "Alterna flex y punta con ambos pies 20 veces para activar la circulación."
+  },
+  {
+    "category": "Movimiento suave",
+    "duration": "1",
+    "title": "Círculos de hombros alternos",
+    "description": "Dibuja círculos con un hombro y luego con el otro, 10 veces cada uno."
+  },
+  {
+    "category": "Movimiento suave",
+    "duration": "1",
+    "title": "Mini torsión de cuello",
+    "description": "Gira la cabeza a derecha e izquierda muy suavemente, respirando."
+  },
+  {
+    "category": "Movimiento suave",
+    "duration": "1",
+    "title": "Palmas con calor",
+    "description": "Frota las palmas 30 s hasta generar calor y colócalas sobre los ojos 10 s."
+  },
+  {
+    "category": "Movimiento suave",
+    "duration": "1",
+    "title": "Mandíbula amable",
+    "description": "Abre y cierra la boca 10 veces suavemente para soltar tensión mandibular."
+  },
+  {
+    "category": "Movimiento suave",
+    "duration": "1",
+    "title": "Respira y abre escápulas",
+    "description": "Lleva codos hacia atrás al inhalar y suelta al exhalar, 6 repeticiones."
+  },
+  {
+    "category": "Entorno que acompaña",
+    "duration": "1",
+    "title": "Modo no molestar 1′",
+    "description": "Activa no molestar un minuto y respira el silencio elegido."
+  },
+  {
+    "category": "Entorno que acompaña",
+    "duration": "1",
+    "title": "Limpia tus gafas",
+    "description": "Limpia tus gafas o pantalla del móvil con atención suave."
+  },
+  {
+    "category": "Entorno que acompaña",
+    "duration": "1",
+    "title": "Ventila 60 s",
+    "description": "Abre una ventana un minuto y toma 3 respiraciones junto al aire fresco."
+  },
+  {
+    "category": "Entorno que acompaña",
+    "duration": "1",
+    "title": "Recoloca el cojín",
+    "description": "Ajusta cojín o respaldo para apoyar mejor la zona lumbar."
+  },
+  {
+    "category": "Entorno que acompaña",
+    "duration": "1",
+    "title": "Apaga una luz extra",
+    "description": "Si hay una luz innecesaria encendida, apágala para calmar el ambiente."
+  },
+  {
+    "category": "Entorno que acompaña",
+    "duration": "1",
+    "title": "Agua a mano",
+    "description": "Coloca una botella o vaso de agua a tu alcance para recordarte hidratarte."
+  },
+  {
+    "category": "Entorno que acompaña",
+    "duration": "1",
+    "title": "Cable fuera de la vista",
+    "description": "Oculta un cable que atraviese tu mesa para despejar visualmente."
+  },
+  {
+    "category": "Entorno que acompaña",
+    "duration": "1",
+    "title": "Pantalla más cálida",
+    "description": "Baja un punto el brillo o activa tono cálido si te sienta bien."
+  },
+  {
+    "category": "Mente, emoción y gratitud",
+    "duration": "1",
+    "title": "Tres palabras para ahora",
+    "description": "Describe tu momento con solo tres palabras."
+  },
+  {
+    "category": "Mente, emoción y gratitud",
+    "duration": "1",
+    "title": "Reencuadre amable",
+    "description": "Toma un pensamiento tenso y dale una versión un poco más amable."
+  },
+  {
+    "category": "Mente, emoción y gratitud",
+    "duration": "1",
+    "title": "Agradece a tu cuerpo",
+    "description": "Elige una parte del cuerpo y agradécele lo que hace por ti."
+  },
+  {
+    "category": "Mente, emoción y gratitud",
+    "duration": "1",
+    "title": "Basta por hoy (mini mantra)",
+    "description": "Repite en silencio: “Por ahora, esto es suficiente”."
+  },
+  {
+    "category": "Mente, emoción y gratitud",
+    "duration": "1",
+    "title": "Una cosa bajo control",
+    "description": "Nombra una sola cosa que dependa de ti en esta hora."
+  },
+  {
+    "category": "Mente, emoción y gratitud",
+    "duration": "1",
+    "title": "Celebra un mini logro",
+    "description": "Reconoce algo pequeño que hiciste bien hoy."
+  },
+  {
+    "category": "Mente, emoción y gratitud",
+    "duration": "1",
+    "title": "Permiso para sentir",
+    "description": "Dite: “Puedo sentir lo que siento” y respira 3 veces."
+  },
+  {
+    "category": "Mente, emoción y gratitud",
+    "duration": "1",
+    "title": "Micro visualización calmante",
+    "description": "Imagina por 10 s un lugar sereno; respira dentro de esa imagen."
+  }
+]

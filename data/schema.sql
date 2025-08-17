@@ -20,10 +20,13 @@ CREATE TABLE IF NOT EXISTS tasks (
   duration TINYINT UNSIGNED NOT NULL, -- 1, 5, 10 (10 ≈ bucket 10–15')
   title VARCHAR(120) NOT NULL,
   guidance VARCHAR(255) NOT NULL,
+  category VARCHAR(80) NULL,
+  steps TEXT NULL, -- JSON array para tareas con pasos
   active TINYINT(1) NOT NULL DEFAULT 1,
   created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   KEY idx_tasks_duration (duration),
-  KEY idx_tasks_duration_id (duration, id)
+  KEY idx_tasks_duration_id (duration, id),
+  KEY idx_tasks_category (category)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Entradas del usuario (historial)

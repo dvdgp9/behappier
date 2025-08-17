@@ -113,7 +113,7 @@ $titleForDuration = ($duration === 1)
             </label>
             <div style="display:flex; gap:8px; align-items:center">
               <button class="btn" type="submit">Guardar</button>
-              <a class="btn secondary" href="?d=<?= $duration ?>">Otra sugerencia</a>
+              <a class="btn secondary" href="?d=<?= $duration ?>">Conectar de nuevo</a>
             </div>
           </form>
         <?php else: ?>
