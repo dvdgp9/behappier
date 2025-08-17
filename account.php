@@ -53,7 +53,7 @@ if (is_post()) {
 ?>
 <?php include __DIR__ . '/partials/head.php'; ?>
   <section class="center">
-    <div class="card" style="width:min(520px, 100%)">
+    <div class="card desenfocado" style="width:min(520px, 100%)">
       <h1 class="h1">Mi cuenta</h1>
       <p class="text-subtle">Aquí puedes ver tu información y cambiar tu contraseña.</p>
 
@@ -83,7 +83,7 @@ if (is_post()) {
 
       <form method="post" class="form stack-16" autocomplete="off">
         <input type="hidden" name="csrf" value="<?= e(csrf_token()) ?>">
-        <fieldset class="stack-12" style="border:0; padding:0; margin:0">
+        <fieldset class="stack-16" style="border:0; padding:0; margin:0">
           <legend class="h2" style="margin-bottom:6px">Cambiar contraseña</legend>
           <label>
             <span>Contraseña actual</span>
@@ -97,7 +97,7 @@ if (is_post()) {
             <span>Confirmar nueva</span>
             <input class="input" type="password" name="confirm" required minlength="8" autocomplete="new-password">
           </label>
-          <div style="display:flex; gap:10px; align-items:center">
+          <div style="display:flex; gap:10px; align-items:center; justify-content:space-between; margin-top:10px">
             <button class="btn" type="submit">Actualizar contraseña</button>
             <a class="btn secondary" href="logout.php">Cerrar sesión</a>
           </div>

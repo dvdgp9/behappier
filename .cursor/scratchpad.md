@@ -73,8 +73,10 @@
 - UI/Branding: Header con brandline (logo blanco + texto "Behappier").
 - Personalización: Registro ahora captura `nombre` y backend guarda `users.nombre`; `home.php` saluda usando `nombre` (fallback a "Behappier").
 - Datos: `data/schema.sql` actualizado para incluir `users.nombre` en instalaciones nuevas.
- - UI/Home: `home.php` separa `hero` y `chooser` (botones apilados full‑width) con `.desenfocado` y animación escalonada.
- - UI/Task: `task.php` adaptado al estilo glass `.desenfocado` (tarjeta principal, artículo de tarea y formulario post‑timer) para coherencia con Home.
+- UI/Home: `home.php` separa `hero` y `chooser` (botones apilados full‑width) con `.desenfocado` y animación escalonada.
+- UI/Task: `task.php` adaptado al estilo glass `.desenfocado` (tarjeta principal, artículo de tarea y formulario post‑timer) para coherencia con Home.
+- UI/Account: creada `account.php` (info: nombre, email, miembro desde). Incluye cambio de contraseña con CSRF y validaciones (actual correcta, nueva=confirmar, min 8). Invalida tokens `auth_tokens` y limpia cookie de "Recordarme" tras cambio. Incluye botón "Cerrar sesión".
+- Navegación: en `partials/head.php` el icono de logout se ha sustituido por un icono de usuario que enlaza a `account.php`. Botones Inicio (abajo izq.) e Historial (abajo der.) mantienen estilo glass.
 
 ### Decisiones confirmadas
 - Marca: wordmark por ahora; textura de fondo tipo papel: OK.
