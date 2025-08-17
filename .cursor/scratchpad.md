@@ -79,6 +79,7 @@
 - Navegación: en `partials/head.php` el icono de logout se ha sustituido por un icono de usuario que enlaza a `account.php`. Botones Inicio (abajo izq.) e Historial (abajo der.) mantienen estilo glass.
  - UX/Sonido: Añadido sonido al finalizar el temporizador (`assets/sfx/timer-end.mp3`). Preload y "primado" en el primer Start para evitar bloqueos de autoplay. Implementado en `assets/app.js` dentro de `finish()`.
  - UX/Timer: Botón "Reiniciar" cambiado a "Terminar" (`data-action="finish"`). Al pulsarlo, lleva el contador a 0 y dispara el mismo flujo de fin con sonido. Implementado en `task.php` y `assets/app.js`.
+ - Datos/Import: Usuario confirmó columnas añadidas; BD aún con datos de muestra. Executor generará `data/tasks_import.sql` con `scripts/import_tasks_from_json.php` y pedirá ejecutar el SQL en MySQL. Luego validaremos conteos y encoding; después UI para `category` y `steps`.
 
 ### Decisiones confirmadas
 - Marca: wordmark por ahora; textura de fondo tipo papel: OK.
@@ -117,6 +118,8 @@
   9. Auth: password clásico vs passcode de 6 dígitos; política "Recordarme" y expiración de sesión.
   10. Seguridad: ¿Argon2 disponible en el hosting? Si no, usaremos bcrypt.
   11. Entorno: versiones exactas de PHP y MySQL; ruta de deploy en cPanel; dominio/subdominio.
+
+ - Importación de tareas (acción requerida del usuario): Una vez generado `data/tasks_import.sql`, por favor ejecútalo en tu MySQL y comparte resultados de validación (conteos por duración y JSON_VALID en `steps`). Si hay errores/encoding raro, te preparo script de diagnóstico.
 
 — Propuestas aprobadas —
 - Iconografía: micro-set doodle propio (SVG) para MVP: reloj, play, stop, historial, shuffle, volver, y 5 caritas de ánimo → IMPLEMENTAR.

@@ -7,7 +7,13 @@
 declare(strict_types=1);
 
 function escapeString(string $str): string {
-    return "'" . addslashes($str) . "'";
+    // Asegurar UTF-8 y escapar para MySQL
+    $str = mb_convert_encoding($str, 'UTF-8', 'UTF-8');
+    return "'" . str_replace(
+        ["'", "\\", "\0", "\n", "\r", "\x1a"],
+        ["''", "\\\\", "\\0", "\\n", "\\r", "\\Z"],
+        $str
+    ) . "'";
 }
 
 function truncateString(string $str, int $maxLength): string {
@@ -26,6 +32,8 @@ function processJsonFile(string $filePath, int $duration): array {
         return [];
     }
     
+    // Asegurar UTF-8
+    $content = mb_convert_encoding($content, 'UTF-8', 'UTF-8');
     $data = json_decode($content, true);
     if (!is_array($data)) {
         echo "JSON inválido en: $filePath\n";
@@ -43,7 +51,7 @@ function processJsonFile(string $filePath, int $duration): array {
         
         // Si hay steps, convertir a JSON
         if (isset($item['steps']) && is_array($item['steps']) && !empty($item['steps'])) {
-            $steps = json_encode($item['steps'], JSON_UNESCAPED_UNICODE);
+            $steps = json_encode($item['steps'], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
         }
         
         if ($title === '' || $guidance === '') {
@@ -77,7 +85,8 @@ if (empty($allTasks)) {
 // Generar SQL
 $sql = "-- Importación de tareas desde JSON\n";
 $sql .= "-- Generado automáticamente el " . date('Y-m-d H:i:s') . "\n\n";
-$sql .= "SET NAMES utf8mb4;\n";
+$sql .= "SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci;\n";
+$sql .= "SET CHARACTER SET utf8mb4;\n";
 $sql .= "SET time_zone = '+00:00';\n\n";
 $sql .= "-- Limpiar tabla existente\n";
 $sql .= "TRUNCATE TABLE tasks;\n\n";
