@@ -30,6 +30,7 @@
   const btnStart = $('[data-action="start"]', timer);
   const btnPause = $('[data-action="pause"]', timer);
   const btnReset = $('[data-action="reset"]', timer);
+  const btnFinish = $('[data-action="finish"]', timer);
   const postForm = $('#post-timer');
 
   // End-of-timer sound
@@ -94,6 +95,13 @@
     timer.style.display = '';
   }
 
+  function finishNow(){
+    // Manually finish: set to 0, prime audio, then finish flow
+    remaining = 0; render();
+    primeSound();
+    finish();
+  }
+
   function finish(){
     pause(); render();
     // play end sound (best-effort)
@@ -109,6 +117,7 @@
   btnStart && btnStart.addEventListener('click', start);
   btnPause && btnPause.addEventListener('click', pause);
   btnReset && btnReset.addEventListener('click', reset);
+  btnFinish && btnFinish.addEventListener('click', finishNow);
 
   // initial render
   render();

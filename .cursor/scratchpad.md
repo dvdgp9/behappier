@@ -78,6 +78,7 @@
 - UI/Account: creada `account.php` (info: nombre, email, miembro desde). Incluye cambio de contraseña con CSRF y validaciones (actual correcta, nueva=confirmar, min 8). Invalida tokens `auth_tokens` y limpia cookie de "Recordarme" tras cambio. Incluye botón "Cerrar sesión".
 - Navegación: en `partials/head.php` el icono de logout se ha sustituido por un icono de usuario que enlaza a `account.php`. Botones Inicio (abajo izq.) e Historial (abajo der.) mantienen estilo glass.
  - UX/Sonido: Añadido sonido al finalizar el temporizador (`assets/sfx/timer-end.mp3`). Preload y "primado" en el primer Start para evitar bloqueos de autoplay. Implementado en `assets/app.js` dentro de `finish()`.
+ - UX/Timer: Botón "Reiniciar" cambiado a "Terminar" (`data-action="finish"`). Al pulsarlo, lleva el contador a 0 y dispara el mismo flujo de fin con sonido. Implementado en `task.php` y `assets/app.js`.
 
 ### Decisiones confirmadas
 - Marca: wordmark por ahora; textura de fondo tipo papel: OK.

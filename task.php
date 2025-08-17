@@ -88,7 +88,7 @@ $titleForDuration = ($duration === 1)
               <div style="display:flex; gap:8px; flex-wrap:wrap">
                 <button class="btn" data-action="start" type="button">Empezar</button>
                 <button class="btn secondary" data-action="pause" type="button">Pausar</button>
-                <button class="btn secondary" data-action="reset" type="button">Reiniciar</button>
+                <button class="btn secondary" data-action="finish" type="button">Terminar</button>
               </div>
             </div>
           </article>
