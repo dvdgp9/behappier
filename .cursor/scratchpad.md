@@ -73,6 +73,8 @@
 - UI/Branding: Header con brandline (logo blanco + texto "Behappier").
 - Personalización: Registro ahora captura `nombre` y backend guarda `users.nombre`; `home.php` saluda usando `nombre` (fallback a "Behappier").
 - Datos: `data/schema.sql` actualizado para incluir `users.nombre` en instalaciones nuevas.
+ - UI/Home: `home.php` separa `hero` y `chooser` (botones apilados full‑width) con `.desenfocado` y animación escalonada.
+ - UI/Task: `task.php` adaptado al estilo glass `.desenfocado` (tarjeta principal, artículo de tarea y formulario post‑timer) para coherencia con Home.
 
 ### Decisiones confirmadas
 - Marca: wordmark por ahora; textura de fondo tipo papel: OK.

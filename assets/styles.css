@@ -56,6 +56,8 @@ small.help{color:#7d746b}
 .btn.duration:hover{transform:translateY(-2px); box-shadow:0 12px 24px rgba(0,0,0,.14)}
 .btn.duration:active{transform:translateY(0); box-shadow:0 6px 16px rgba(0,0,0,.12)}
 .btn.duration:focus-visible{outline:3px solid var(--accent1); outline-offset:2px}
+/* Estado seleccionado (duración activa) */
+.btn.duration[aria-current="true"]{background:#ffffff88; box-shadow:0 10px 24px rgba(0,0,0,.16)}
 
 /* Chooser (botones apilados centrados) */
 .chooser{margin:12px 0; border-radius:var(--radius); box-shadow:var(--shadow)}

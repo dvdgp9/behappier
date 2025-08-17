@@ -65,10 +65,10 @@ $task = suggest_task($pdo, $uid, $duration);
       </div>
 
       <div class="stack-16">
-        <div style="display:flex; gap:8px; flex-wrap:wrap">
-          <a class="btn<?= $duration===1?' secondary':'' ?>" href="?d=1">1′</a>
-          <a class="btn<?= $duration===5?' secondary':'' ?>" href="?d=5">5′</a>
-          <a class="btn<?= $duration===10?' secondary':'' ?>" href="?d=10">10–15′</a>
+        <div class="durations" role="group" aria-label="Duración de la pausa">
+          <a class="btn duration" href="?d=1" <?= $duration===1?'aria-current="true"':'' ?>>1′</a>
+          <a class="btn duration" href="?d=5" <?= $duration===5?'aria-current="true"':'' ?>>5′</a>
+          <a class="btn duration" href="?d=10" <?= $duration===10?'aria-current="true"':'' ?>>10–15′</a>
         </div>
 
         <?php if ($success): ?>
