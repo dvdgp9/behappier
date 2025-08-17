@@ -31,5 +31,6 @@ declare(strict_types=1);
 </header>
 <main class="container">
 <?php if (function_exists('current_user_id') && current_user_id()): ?>
+  <a href="home.php" class="icon-btn home" aria-label="Inicio" title="Inicio"><i class="iconoir-home"></i></a>
   <a href="history.php" class="icon-btn history" aria-label="Historial" title="Historial"><i class="iconoir-notes"></i></a>
 <?php endif; ?>

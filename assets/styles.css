@@ -44,8 +44,8 @@ small.help{color:#7d746b}
 .fab:hover{transform:translateY(-1px); box-shadow:0 10px 24px rgba(0,0,0,.16)}
 .fab i{font-size:24px}
 
-/* Back button (bottom-left), same visual as logout icon-btn */
-.icon-btn.back{position:fixed; left:20px; bottom:20px; z-index:1100}
+/* Home button (bottom-left), same visual as logout icon-btn */
+.icon-btn.home{position:fixed; left:20px; bottom:20px; z-index:1100}
 /* History button (bottom-right), same visual */
 .icon-btn.history{position:fixed; right:20px; bottom:20px; z-index:1100}
 
@@ -99,7 +99,7 @@ body.leaving main{animation: pageOut 280ms var(--motion) forwards}
   .btn.duration{height:52px; font-size:19px; padding:0 16px}
   .fab{right:14px; bottom:14px; width:48px; height:48px; border-radius:14px}
   .fab i{font-size:22px}
-  .icon-btn.back{left:14px; bottom:14px}
+  .icon-btn.home{left:14px; bottom:14px}
   .icon-btn.history{right:14px; bottom:14px}
 }
 

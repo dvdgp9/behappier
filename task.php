@@ -122,12 +122,6 @@ $titleForDuration = ($duration === 1)
       </div>
     </div>
   </section>
-  <!-- Botón Inicio (estilo icon-btn) -->
-  <a href="home.php" class="icon-btn back" aria-label="Inicio" title="Inicio">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-      <path d="M2 8L11.7317 3.13416C11.9006 3.04971 12.0994 3.0497 12.2683 3.13416L22 8"></path>
-    </svg>
-  </a>
   <script src="assets/app.js"></script>
   <script>
     window.BEH_DURATION = <?= $duration ?>;
