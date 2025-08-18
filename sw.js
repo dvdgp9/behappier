@@ -1,5 +1,5 @@
 // Minimal service worker for behappier (cache static assets)
-const CACHE_NAME = 'behappier-v1.1';
+const CACHE_NAME = 'behappier-v1.2';
 const ASSETS = [
   '/',
   '/index.php',
