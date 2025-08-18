@@ -30,7 +30,7 @@ function rel_day_label(string $createdAt): string {
 ?>
 <?php include __DIR__ . '/partials/head.php'; ?>
   <section class="center">
-    <div class="card history desenfocado">
+    <div class="card desenfocado">
       <div class="history-header">
         <h1 class="h1">Historial</h1>
       </div>
