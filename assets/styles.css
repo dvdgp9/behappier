@@ -11,6 +11,12 @@
     height:env(safe-area-inset-top); background:var(--bg);
     z-index:999; pointer-events:none;
   }
+  body::after{
+    content:""; position:fixed; left:0; right:0; bottom:0;
+    height:calc(env(safe-area-inset-bottom) + 22px);
+    background:linear-gradient(180deg, rgba(255,248,241,0) 0%, rgba(255,248,241,0.92) 70%, rgba(255,248,241,1) 100%);
+    pointer-events:none; z-index:998;
+  }
 }
 *{box-sizing:border-box}
 html,body{height:100%}
