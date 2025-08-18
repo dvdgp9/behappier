@@ -17,7 +17,17 @@ declare(strict_types=1);
   <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/styles.css">
 </head>
-<body>
+<?php
+  // Add body class based on current page
+  $bodyClass = '';
+  if (isset($_SERVER['SCRIPT_NAME'])) {
+    $page = basename($_SERVER['SCRIPT_NAME'], '.php');
+    if ($page === 'home') {
+      $bodyClass = 'home-page';
+    }
+  }
+?>
+<body<?= $bodyClass ? ' class="' . $bodyClass . '"' : '' ?>>
 <header class="site-header">
   <div class="container header-inner">
     <div class="brandline">

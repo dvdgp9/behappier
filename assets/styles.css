@@ -12,6 +12,9 @@ body{
   font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
   /* Extend background to safe areas in PWA */
   padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  /* Flex layout to ensure full viewport coverage */
+  display: flex;
+  flex-direction: column;
 }
 /* Prevent horizontal scroll and ensure media scale within viewport */
 html, body{overflow-x:hidden}
@@ -36,6 +39,19 @@ img, svg{max-width:100%; height:auto; display:block}
 .btn.secondary{background:var(--accent1); color:#3b2f26}
 .stack-16{display:grid; gap:16px}
 .center{display:grid; place-items:center; min-height:calc(100vh - 96px)}
+
+/* Ensure main content area stretches to fill viewport in PWA */
+main.container{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Home page specific fix for full viewport coverage */
+body.home-page main.container{
+  min-height: calc(100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom) - 96px);
+}
 small.help{color:#7d746b}
 .alert{padding:10px 12px; border-radius:12px; background:#fff3cd; color:#6b5a2b; border:1px solid #ffe69c}
 .success{padding:10px 12px; border-radius:12px; background:#e8f8ef; color:#1f6b3a; border:1px solid #bfe7cf}
