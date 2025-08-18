@@ -3,6 +3,15 @@
   --bg:#FFF8F1; --ink:#4A3F35; --accent1:#F0C6AA; --accent2:#C8E6D0; --accent3:#E8DFF5;
   --radius:16px; --shadow:0 4px 14px rgba(0,0,0,.08); --motion:140ms cubic-bezier(.2,.8,.2,1);
 }
+
+/* PWA standalone: paint safe-area top to avoid gray band near notch */
+@media (display-mode: standalone){
+  body::before{
+    content:""; position:fixed; top:0; left:0; right:0;
+    height:env(safe-area-inset-top); background:var(--bg);
+    z-index:999; pointer-events:none;
+  }
+}
 *{box-sizing:border-box}
 html,body{height:100%}
 body{
@@ -10,10 +19,11 @@ body{
   background: var(--bg) url('textures/Fondo-behappier.jpg') center/cover fixed no-repeat;
   font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
 }
+html, body{background-color: var(--bg)}
 /* Prevent horizontal scroll and ensure media scale within viewport */
 html, body{overflow-x:hidden}
 img, svg{max-width:100%; height:auto; display:block}
-.site-header{padding:16px 0}
+.site-header{padding:16px 0; padding-top:calc(16px + env(safe-area-inset-top))}
 .container{width:min(920px, 92%); margin:0 auto}
 .header-inner{display:flex; align-items:center; gap:12px; justify-content:space-between}
 .logo{display:block; height:48px; width:auto}
@@ -111,6 +121,8 @@ body.leaving main{animation: pageOut 280ms var(--motion) forwards}
 
 /* Responsive tweaks */
 @media (max-width: 600px){
+  /* iOS PWA: avoid gaps near notch when using fixed backgrounds */
+  body{ background-attachment: scroll; background-position:center; background-size:cover }
   .h1{font-size:22px}
   .card{padding:16px}
   .history{padding:16px}

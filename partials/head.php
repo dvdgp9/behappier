@@ -5,7 +5,7 @@ declare(strict_types=1);
 <html lang="es">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>behappier</title>
   <link rel="icon" href="assets/brand/favicon.png" sizes="32x32">
   <link rel="apple-touch-icon" href="assets/brand/Logo-behappier-180.png" sizes="180x180">
