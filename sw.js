@@ -1,5 +1,5 @@
-// Online-first service worker for behappier (better updates)
-const CACHE_NAME = 'behappier-v1.3';
+// Service worker for behappier — online-first with cache fallback
+const CACHE_NAME = 'behappier-v1.3.1';
 const ASSETS = [
   '/',
   '/index.php',
@@ -13,7 +13,9 @@ const ASSETS = [
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(ASSETS)).then(() => self.skipWaiting())
+    caches.open(CACHE_NAME)
+      .then((cache) => cache.addAll(ASSETS))
+      .then(() => self.skipWaiting())
   );
 });
 
@@ -24,48 +26,27 @@ self.addEventListener('activate', (event) => {
   );
 });
 
-// Online-first fetch strategy
+// Online-first strategy for all GET requests; fallback to cache
 self.addEventListener('fetch', (event) => {
-  // Skip non-GET requests and external URLs
-  if (event.request.method !== 'GET' || !event.request.url.startsWith(self.location.origin)) {
-    return;
-  }
+  const req = event.request;
+  if (req.method !== 'GET') return;
 
   event.respondWith(
-    fetch(event.request)
-      .then((response) => {
-        // If online fetch succeeds, cache and return
-        if (response && response.status === 200 && response.type === 'basic') {
-          const responseClone = response.clone();
-          caches.open(CACHE_NAME).then((cache) => cache.put(event.request, responseClone));
-        }
-        return response;
+    fetch(req)
+      .then((res) => {
+        // Update cache in background
+        const copy = res.clone();
+        caches.open(CACHE_NAME).then((cache) => cache.put(req, copy)).catch(() => {});
+        return res;
       })
       .catch(() => {
-        // If offline, serve from cache
-        return caches.match(event.request);
+        return caches.match(req).then((cached) => {
+          if (cached) return cached;
+          if (req.mode === 'navigate') return caches.match('/home.php');
+          return Promise.reject('offline');
+        });
       })
   );
 });
 
-self.addEventListener('fetch', (event) => {
-  const req = event.request;
-  // Network-first for PHP pages, cache-first for assets
-  if (req.destination === 'document' || req.headers.get('Accept')?.includes('text/html')) {
-    event.respondWith(
-      fetch(req).then((res) => {
-        const resClone = res.clone();
-        caches.open(CACHE_NAME).then((c) => c.put(req, resClone));
-        return res;
-      }).catch(() => caches.match(req))
-    );
-  } else {
-    event.respondWith(
-      caches.match(req).then((hit) => hit || fetch(req).then((res) => {
-        const resClone = res.clone();
-        caches.open(CACHE_NAME).then((c) => c.put(req, resClone));
-        return res;
-      }))
-    );
-  }
-});
+// (Removed legacy duplicate fetch listener)
