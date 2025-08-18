@@ -19,6 +19,7 @@ img, svg{max-width:100%; height:auto; display:block}
 .logo{display:block; height:48px; width:auto}
 .brandline{display:flex; align-items:center; gap:10px}
 .site-title{font-family:"Patrick Hand", cursive; font-size:22px; color:var(--ink)}
+.history{width:min(680px,96%)}
 .card{background:#ffffffdd; padding:24px; border-radius:var(--radius); box-shadow:var(--shadow)}
 .h1{font-family:"Patrick Hand", cursive; font-size:28px; margin:0 0 12px}
 .text-subtle{color:#6b6158}
@@ -58,6 +59,21 @@ small.help{color:#7d746b}
 /* History list layout safety: allow flex children to shrink and wrap */
 .history-list .card > div{min-width:0}
 .history-list{overflow-x:hidden}
+
+/* History page header */
+.history-header{display:flex; justify-content:space-between; align-items:center; gap:8px; margin-bottom:8px}
+
+/* History row items (Variant A) */
+.history-list .history-item{display:flex; gap:12px; align-items:center; padding:12px 14px; box-shadow:none; background:#ffffffcc}
+.history-list .history-item + .history-item{border-top:1px solid #eee5dc}
+.history-list .dur-col{min-width:64px; display:flex; align-items:center; justify-content:center}
+.history-title{font-weight:600; margin:0 0 4px}
+.history-note{color:#7d746b; font-size:13px; overflow-wrap:anywhere}
+
+/* Badges and chips */
+.badge{display:inline-flex; align-items:center; justify-content:center; height:26px; padding:0 10px; border-radius:999px; font-weight:600; font-size:13px}
+.badge-duration{background:var(--accent2); color:#1f5134; border:1px solid #bfe7cf}
+.chip{display:inline-flex; align-items:center; height:24px; padding:0 10px; border-radius:999px; font-size:12px; color:#6b6158; background:#ffffff88; border:1px solid #ede4db}
 
 /* Home hero */
 .hero{margin:12px 0; border-radius:var(--radius); box-shadow:var(--shadow)}
@@ -99,7 +115,7 @@ body.leaving main{animation: pageOut 280ms var(--motion) forwards}
   .card{padding:16px}
   .history{padding:16px}
   .history-list .card{padding:12px}
-  .history-list .dur-col{min-width:44px; font-size:18px}
+  .history-list .dur-col{min-width:44px}
   .history-list .date-col{min-width:auto}
   .history-list .date-col small{font-size:12px; white-space:nowrap}
   .history-list .card{flex-wrap:wrap; align-items:flex-start}

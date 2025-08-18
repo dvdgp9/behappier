@@ -30,9 +30,9 @@ function rel_day_label(string $createdAt): string {
 ?>
 <?php include __DIR__ . '/partials/head.php'; ?>
   <section class="center">
-    <div class="card history" style="width:min(680px,96%)">
-      <div class="history-header" style="display:flex; justify-content:space-between; align-items:center; gap:8px; margin-bottom:8px">
-        <h1 class="h1" style="margin:0">Historial</h1>
+    <div class="card history desenfocado">
+      <div class="history-header">
+        <h1 class="h1">Historial</h1>
       </div>
 
       <?php if (!$rows): ?>
@@ -40,20 +40,20 @@ function rel_day_label(string $createdAt): string {
       <?php else: ?>
         <div class="stack-16 history-list">
           <?php foreach ($rows as $r): ?>
-            <article class="card" style="display:flex; gap:12px; align-items:center">
-              <div class="dur-col" style="min-width:64px; text-align:center; font-family:'Patrick Hand',cursive; font-size:20px">
-                <?= (int)$r['duration'] === 10 ? '10–15′' : e((string)$r['duration']) . '′' ?>
+            <article class="card history-item">
+              <div class="dur-col">
+                <span class="badge badge-duration"><?=$r['duration']==10 ? '10–15′' : e((string)$r['duration']).'′'?></span>
               </div>
-              <div style="flex:1 1 auto">
-                <div style="font-weight:600; margin-bottom:4px"><?= e($r['title']) ?></div>
+              <div class="content">
+                <div class="history-title"><?= e($r['title']) ?></div>
                 <?php if (!is_null($r['mood'])): ?>
-                  <small class="help">Ánimo: <?= (int)$r['mood'] ?>/5</small>
+                  <div class="history-mood"><small class="help">Ánimo: <?= (int)$r['mood'] ?>/5</small></div>
                 <?php endif; ?>
                 <?php if (!empty($r['note'])): ?>
-                  <div><small class="help">«<?= e($r['note']) ?>»</small></div>
+                  <div class="history-note"><small class="help">«<?= e($r['note']) ?>»</small></div>
                 <?php endif; ?>
               </div>
-              <div class="date-col" style="min-width:150px; text-align:right"><small class="help"><?= e(rel_day_label((string)$r['created_at'])) ?></small></div>
+              <div class="meta date-col"><span class="chip"><?= e(rel_day_label((string)$r['created_at'])) ?></span></div>
             </article>
           <?php endforeach; ?>
         </div>
