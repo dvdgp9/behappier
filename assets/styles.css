@@ -70,6 +70,7 @@ small.help{color:#7d746b}
 /* History list layout safety: allow flex children to shrink and wrap */
 .history-list .card > div{min-width:0}
 .history-list{overflow-x:hidden}
+.history-list {height: 72vh}
 
 /* History page header */
 .history-header{display:flex; justify-content:space-between; align-items:center; gap:8px; margin-bottom:8px}
@@ -77,7 +78,7 @@ small.help{color:#7d746b}
 /* History row items (Variant A) */
 .history-list .history-item{display:flex; gap:12px; align-items:center; padding:12px 14px; box-shadow:none; background:#ffffff88}
 .history-list .history-item + .history-item{border-top:1px solid #eee5dc}
-.history-list .dur-col{min-width:64px; display:flex; align-items:center; justify-content:center; height: 72vh}
+.history-list .dur-col{min-width:64px; display:flex; align-items:center; justify-content:center}
 .history-title{font-weight:600; margin:0 0 4px}
 .history-note{color:#7d746b; font-size:13px; overflow-wrap:anywhere}
 
