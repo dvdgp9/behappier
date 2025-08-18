@@ -4,25 +4,11 @@
   --radius:16px; --shadow:0 4px 14px rgba(0,0,0,.08); --motion:140ms cubic-bezier(.2,.8,.2,1);
 }
 *{box-sizing:border-box}
-html, body {
-  height: 100%;
-  margin: 0;
-}
-
-body {
-  color: var(--ink);
+html,body{height:100%}
+body{
+  margin:0; color:var(--ink);
   background: var(--bg) url('textures/Fondo-behappier.jpg') center/cover fixed no-repeat;
-  background-attachment: fixed;
-  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-  /* Extend background to safe areas in PWA */
-  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
-  /* Flex layout to ensure full viewport coverage */
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  /* Ensure background covers safe areas */
-  background-size: cover;
-  background-position: center;
+  font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
 }
 /* Prevent horizontal scroll and ensure media scale within viewport */
 html, body{overflow-x:hidden}
@@ -47,33 +33,6 @@ img, svg{max-width:100%; height:auto; display:block}
 .btn.secondary{background:var(--accent1); color:#3b2f26}
 .stack-16{display:grid; gap:16px}
 .center{display:grid; place-items:center; min-height:calc(100vh - 96px)}
-
-/* Ensure main content area stretches to fill viewport in PWA */
-main.container {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  /* Ensure main container extends to cover safe areas */
-  margin: 0;
-  padding: 0;
-  width: 100%;
-}
-
-/* Home page specific fix for full viewport coverage */
-body.home-page main.container {
-  min-height: calc(100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom) - 96px);
-}
-
-/* Home content wrapper to ensure full height coverage */
-.home-content-wrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  flex: 1;
-  width: 100%;
-  padding: 20px 0;
-}
 small.help{color:#7d746b}
 .alert{padding:10px 12px; border-radius:12px; background:#fff3cd; color:#6b5a2b; border:1px solid #ffe69c}
 .success{padding:10px 12px; border-radius:12px; background:#e8f8ef; color:#1f6b3a; border:1px solid #bfe7cf}
@@ -173,22 +132,4 @@ body.leaving main{animation: pageOut 280ms var(--motion) forwards}
 @media (min-width: 900px){
   body{ background-image: url('textures/fondo-pc-behappier.jpg'); }
   .site-header .icon-btn{ position:fixed; top:16px; right:20px; z-index:1100 }
-}
-
-/* Additional fix for mobile PWA to ensure full coverage */
-@media (max-width: 600px) {
-  body {
-    min-height: 100vh;
-    min-height: -webkit-fill-available;
-  }
-  
-  body.home-page main.container {
-    min-height: calc(100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom) - 96px);
-    min-height: calc(-webkit-fill-available - env(safe-area-inset-top) - env(safe-area-inset-bottom) - 96px);
-  }
-  
-  .home-content-wrapper {
-    min-height: calc(100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom) - 96px);
-    min-height: calc(-webkit-fill-available - env(safe-area-inset-top) - env(safe-area-inset-bottom) - 96px);
-  }
 }

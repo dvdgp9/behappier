@@ -1,76 +1,71 @@
-// behappier Service Worker (Online-First Strategy)
+// Online-first service worker for behappier (better updates)
 const CACHE_NAME = 'behappier-v1.3';
 const ASSETS = [
   '/',
   '/index.php',
   '/home.php',
-  '/task.php',
-  '/history.php',
-  '/account.php',
   '/assets/styles.css',
   '/assets/app.js',
   '/assets/brand/Logo-behappier-180.png',
   '/assets/brand/Logo-behappier-192.png',
-  '/assets/brand/favicon.png',
-  '/assets/sfx/timer-end.mp3'
+  '/assets/brand/favicon.png'
 ];
 
-// Install event - cache all assets
 self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then((cache) => cache.addAll(ASSETS))
-      .then(() => self.skipWaiting())
+    caches.open(CACHE_NAME).then((cache) => cache.addAll(ASSETS)).then(() => self.skipWaiting())
   );
 });
 
-// Activate event - clean up old caches
 self.addEventListener('activate', (event) => {
   event.waitUntil(
-    caches.keys().then((keys) => 
-      Promise.all(keys.map((key) => {
-        if (key !== CACHE_NAME) {
-          return caches.delete(key);
-        }
-      }))
-    ).then(() => self.clients.claim())
+    caches.keys().then((keys) => Promise.all(keys.map((k) => k !== CACHE_NAME && caches.delete(k))))
+      .then(() => self.clients.claim())
   );
 });
 
-// Fetch event - network first strategy with cache fallback
+// Online-first fetch strategy
+self.addEventListener('fetch', (event) => {
+  // Skip non-GET requests and external URLs
+  if (event.request.method !== 'GET' || !event.request.url.startsWith(self.location.origin)) {
+    return;
+  }
+
+  event.respondWith(
+    fetch(event.request)
+      .then((response) => {
+        // If online fetch succeeds, cache and return
+        if (response && response.status === 200 && response.type === 'basic') {
+          const responseClone = response.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(event.request, responseClone));
+        }
+        return response;
+      })
+      .catch(() => {
+        // If offline, serve from cache
+        return caches.match(event.request);
+      })
+  );
+});
+
 self.addEventListener('fetch', (event) => {
   const req = event.request;
-  
-  // Network-first for PHP pages and documents, cache-first for assets
+  // Network-first for PHP pages, cache-first for assets
   if (req.destination === 'document' || req.headers.get('Accept')?.includes('text/html')) {
     event.respondWith(
-      fetch(req)
-        .then((response) => {
-          // Clone the response to put in cache
-          const responseClone = response.clone();
-          
-          // Cache the response for future use
-          caches.open(CACHE_NAME)
-            .then((cache) => cache.put(req, responseClone));
-            
-          return response;
-        })
-        .catch(() => {
-          // Fallback to cache if network fails
-          return caches.match(req);
-        })
+      fetch(req).then((res) => {
+        const resClone = res.clone();
+        caches.open(CACHE_NAME).then((c) => c.put(req, resClone));
+        return res;
+      }).catch(() => caches.match(req))
     );
   } else {
-    // Cache-first for assets
     event.respondWith(
-      caches.match(req)
-        .then((response) => {
-          // Return cached version if found
-          if (response) return response;
-          
-          // Otherwise fetch from network
-          return fetch(req);
-        })
+      caches.match(req).then((hit) => hit || fetch(req).then((res) => {
+        const resClone = res.clone();
+        caches.open(CACHE_NAME).then((c) => c.put(req, resClone));
+        return res;
+      }))
     );
   }
 });

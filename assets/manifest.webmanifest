@@ -4,7 +4,7 @@
   "description": "Pequeñas prácticas para respirar, conectar y estar mejor.",
   "start_url": "/home.php",
   "scope": "/",
-  "display": "standalone",
+  "display": "fullscreen",
   "lang": "es-ES",
   "background_color": "#FFF8F1",
   "theme_color": "#4A3F35",
