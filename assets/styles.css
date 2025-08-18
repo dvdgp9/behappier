@@ -10,12 +10,12 @@ body{
   background: var(--bg) url('textures/Fondo-behappier.jpg') center/cover fixed no-repeat;
   font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
 }
-/* Full-bleed background for status bar/safe area */
-html{ background: var(--bg) }
 /* Prevent horizontal scroll and ensure media scale within viewport */
 html, body{overflow-x:hidden}
 img, svg{max-width:100%; height:auto; display:block}
-.site-header{padding:calc(16px + env(safe-area-inset-top)) 0 16px}
+/* PWA safe-area top padding to cover notch area */
+body{padding-top:env(safe-area-inset-top)}
+.site-header{padding:16px 0}
 .container{width:min(920px, 92%); margin:0 auto}
 .header-inner{display:flex; align-items:center; gap:12px; justify-content:space-between}
 .logo{display:block; height:48px; width:auto}

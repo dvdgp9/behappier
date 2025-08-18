@@ -81,8 +81,6 @@
  - UX/Timer: Botón "Reiniciar" cambiado a "Terminar" (`data-action="finish"`). Al pulsarlo, lleva el contador a 0 y dispara el mismo flujo de fin con sonido. Implementado en `task.php` y `assets/app.js`.
  - Datos/Import: Usuario confirmó columnas añadidas; BD aún con datos de muestra. Executor generará `data/tasks_import.sql` con `scripts/import_tasks_from_json.php` y pedirá ejecutar el SQL en MySQL. Luego validaremos conteos y encoding; después UI para `category` y `steps`.
  - UI/History (Executor): Rediseñado `history.php` a Variante A (rows con separadores). Aplicado `.desenfocado` al contenedor, eliminado estilos inline, creado badges (`.badge-duration`) para duración y chips (`.chip`) para fecha. Ajustes responsive y fix de overflow horizontal en móvil mediante `overflow-x:hidden`, wrapping y `min-width:0` en hijos flex. Estilos en `assets/styles.css`.
- - PWA/Safe Areas (Executor): Añadido `viewport-fit=cover` en `partials/head.php`, `html{background:var(--bg)}` y padding superior con `env(safe-area-inset-top)` al header para eliminar franja superior en notch. Ajustados offsets de FAB e iconos inferior con `env(safe-area-inset-*)`.
- - SW (Executor): `sw.js` actualizado a estrategia online‑first con fallback a caché, y `CACHE_NAME` bump a `behappier-v1.3` para forzar actualización de estilos.
 
 ### Decisiones confirmadas
 - Marca: wordmark por ahora; textura de fondo tipo papel: OK.

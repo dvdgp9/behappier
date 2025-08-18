@@ -1,5 +1,5 @@
 // Service worker for behappier — online-first with cache fallback
-const CACHE_NAME = 'behappier-v1.3.1';
+const CACHE_NAME = 'behappier-v1.3';
 const ASSETS = [
   '/',
   '/index.php',
@@ -13,9 +13,7 @@ const ASSETS = [
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then((cache) => cache.addAll(ASSETS))
-      .then(() => self.skipWaiting())
+    caches.open(CACHE_NAME).then((cache) => cache.addAll(ASSETS)).then(() => self.skipWaiting())
   );
 });
 
@@ -26,27 +24,23 @@ self.addEventListener('activate', (event) => {
   );
 });
 
-// Online-first strategy for all GET requests; fallback to cache
+// Online-first: try network, update cache, fallback to cache
 self.addEventListener('fetch', (event) => {
-  const req = event.request;
-  if (req.method !== 'GET') return;
+  const { request } = event;
+  if (request.method !== 'GET') return;
 
   event.respondWith(
-    fetch(req)
-      .then((res) => {
-        // Update cache in background
-        const copy = res.clone();
-        caches.open(CACHE_NAME).then((cache) => cache.put(req, copy)).catch(() => {});
-        return res;
+    fetch(request)
+      .then((networkResp) => {
+        // Update cache in background (same-origin only)
+        const copy = networkResp.clone();
+        if (new URL(request.url).origin === self.location.origin) {
+          caches.open(CACHE_NAME).then((cache) => cache.put(request, copy)).catch(() => {});
+        }
+        return networkResp;
       })
-      .catch(() => {
-        return caches.match(req).then((cached) => {
-          if (cached) return cached;
-          if (req.mode === 'navigate') return caches.match('/home.php');
-          return Promise.reject('offline');
-        });
-      })
+      .catch(() => caches.match(request).then((cached) => cached || caches.match('/')))
   );
 });
 
-// (Removed legacy duplicate fetch listener)
+// (Removed secondary fetch handler to avoid conflicts)
