@@ -4,6 +4,7 @@ require __DIR__ . '/includes/auth.php';
 require_login();
 ?>
 <?php include __DIR__ . '/partials/head.php'; ?>
+<div class="home-content-wrapper">
   <section class="hero desenfocado">
     <div class="container" style="padding:18px 0">
       <?php $u = current_user($pdo); $displayName = trim((string)($u['nombre'] ?? '')); ?>
@@ -22,6 +23,7 @@ require_login();
       </div>
     </div>
   </section>
+</div>
 </main>
 </body>
 </html>
