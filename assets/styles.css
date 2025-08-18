@@ -44,14 +44,14 @@ small.help{color:#7d746b}
 .icon-btn svg{width:22px; height:22px; display:block}
 
 /* Floating Action Button (bottom-right) */
-.fab{position:fixed; right:20px; bottom:20px; z-index:1000; width:52px; height:52px; border-radius:16px; display:flex; align-items:center; justify-content:center; background:var(--ink); color:#fff; text-decoration:none; box-shadow:var(--shadow); transition:transform var(--motion), box-shadow var(--motion)}
+.fab{position:fixed; right:calc(20px + env(safe-area-inset-right)); bottom:calc(24px + env(safe-area-inset-bottom)); z-index:1000; width:52px; height:52px; border-radius:16px; display:flex; align-items:center; justify-content:center; background:var(--ink); color:#fff; text-decoration:none; box-shadow:var(--shadow); transition:transform var(--motion), box-shadow var(--motion)}
 .fab:hover{transform:translateY(-1px); box-shadow:0 10px 24px rgba(0,0,0,.16)}
 .fab i{font-size:24px}
 
 /* Home button (bottom-left), same visual as logout icon-btn */
-.icon-btn.home{position:fixed; left:20px; bottom:20px; z-index:1100}
+.icon-btn.home{position:fixed; left:calc(20px + env(safe-area-inset-left)); bottom:calc(24px + env(safe-area-inset-bottom)); z-index:1100}
 /* History button (bottom-right), same visual */
-.icon-btn.history{position:fixed; right:20px; bottom:20px; z-index:1100}
+.icon-btn.history{position:fixed; right:calc(20px + env(safe-area-inset-right)); bottom:calc(24px + env(safe-area-inset-bottom)); z-index:1100}
 
 /* Desenfoque contextual sobre el fondo para mejorar legibilidad */
 .desenfocado{background:rgba(255,255,255,0.25); -webkit-backdrop-filter: blur(7px) saturate(1.05); backdrop-filter: blur(7px) saturate(1.05);} 
@@ -122,10 +122,10 @@ body.leaving main{animation: pageOut 280ms var(--motion) forwards}
   .history-list .date-col{margin-left:auto}
   .hero .brand{font-size:30px}
   .btn.duration{height:52px; font-size:19px; padding:0 16px}
-  .fab{right:14px; bottom:14px; width:48px; height:48px; border-radius:14px}
+  .fab{right:calc(18px + env(safe-area-inset-right)); bottom:calc(20px + env(safe-area-inset-bottom)); width:48px; height:48px; border-radius:14px}
   .fab i{font-size:22px}
-  .icon-btn.home{left:14px; bottom:14px}
-  .icon-btn.history{right:14px; bottom:14px}
+  .icon-btn.home{left:calc(18px + env(safe-area-inset-left)); bottom:calc(20px + env(safe-area-inset-bottom))}
+  .icon-btn.history{right:calc(18px + env(safe-area-inset-right)); bottom:calc(20px + env(safe-area-inset-bottom))}
 }
 
 /* Desktop background and logout alignment */
