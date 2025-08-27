@@ -109,7 +109,7 @@ if (isset($_GET['ajax']) && (int)$_GET['ajax'] === 1) {
           }
         ?>
         <?php if ($stepsArr): ?>
-          <ol style="margin:0 0 8px 18px; padding:0; color:#4A3F35">
+          <ol style="margin:0 0 8px 18px; padding:0; color:#4A3F35; font-size:15px">
             <?php foreach ($stepsArr as $s): ?>
               <li style="margin:4px 0;"><?= e((string)$s) ?></li>
             <?php endforeach; ?>
@@ -190,7 +190,7 @@ if (isset($_GET['ajax']) && (int)$_GET['ajax'] === 1) {
               }
             ?>
             <?php if ($stepsArr): ?>
-              <ol style="margin:0 0 8px 18px; padding:0; color:#4A3F35">
+              <ol style="margin:0 0 8px 18px; padding:0; color:#4A3F35; font-size:15px">
                 <?php foreach ($stepsArr as $s): ?>
                   <li style="margin:4px 0;"><?= e((string)$s) ?></li>
                 <?php endforeach; ?>
