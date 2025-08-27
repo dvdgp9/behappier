@@ -101,7 +101,6 @@ if (isset($_GET['ajax']) && (int)$_GET['ajax'] === 1) {
     <div id="exercise-block">
       <article class="card desenfocado">
         <h2 class="h1" style="font-size:24px; margin-bottom:6px"><?= e($task['title']) ?></h2>
-        <p class="text-subtle" style="margin:8px 0 8px"><?= e($task['guidance']) ?></p>
         <?php
           $stepsArr = null;
           if (!empty($task['steps'])) {
@@ -183,7 +182,6 @@ if (isset($_GET['ajax']) && (int)$_GET['ajax'] === 1) {
           <div id="exercise-block">
           <article class="card desenfocado">
             <h2 class="h1" style="font-size:24px; margin-bottom:6px"><?= e($task['title']) ?></h2>
-            <p class="text-subtle" style="margin:8px 0 8px"><?= e($task['guidance']) ?></p>
             <?php
               $stepsArr = null;
               if (!empty($task['steps'])) {

@@ -26,14 +26,57 @@ if (!file_exists($input)) {
     exit(1);
 }
 
-function mb_to_utf8(string $s): string {
-    // Detecta/convierte a UTF-8 de forma defensiva
-    $enc = mb_detect_encoding($s, ['UTF-8','ISO-8859-1','Windows-1252'], true);
-    if ($enc && $enc !== 'UTF-8') {
-        $s = mb_convert_encoding($s, 'UTF-8', $enc);
+function normalize_newlines(string $s): string {
+    return str_replace(["\r\n", "\r"], "\n", $s);
+}
+
+/**
+ * Abre el CSV garantizando UTF-8 y saltos normalizados, devolviendo un stream listo para fgetcsv.
+ */
+function open_csv_as_utf8(string $path)
+{
+    $raw = file_get_contents($path);
+    if ($raw === false) {
+        fwrite(STDERR, "No se pudo leer el CSV: $path\n");
+        exit(1);
     }
-    // Normaliza saltos
-    return str_replace(["\r\n","\r"], "\n", $s);
+
+    // Detecta BOM UTF-8 / UTF-16 y convierte si aplica
+    $bom8  = "\xEF\xBB\xBF";
+    $bom16le = "\xFF\xFE";
+    $bom16be = "\xFE\xFF";
+
+    if (strncmp($raw, $bom8, 3) === 0) {
+        $raw = substr($raw, 3); // quitar BOM UTF-8
+    } elseif (strncmp($raw, $bom16le, 2) === 0) {
+        $raw = mb_convert_encoding(substr($raw, 2), 'UTF-8', 'UTF-16LE');
+    } elseif (strncmp($raw, $bom16be, 2) === 0) {
+        $raw = mb_convert_encoding(substr($raw, 2), 'UTF-8', 'UTF-16BE');
+    }
+
+    // Si no es UTF-8 válido, intentar otras codificaciones típicas de Excel/Windows
+    if (!mb_check_encoding($raw, 'UTF-8')) {
+        $candidates = ['Windows-1252', 'ISO-8859-1', 'ISO-8859-15'];
+        foreach ($candidates as $enc) {
+            $conv = @mb_convert_encoding($raw, 'UTF-8', $enc);
+            if ($conv !== '' && mb_check_encoding($conv, 'UTF-8')) {
+                $raw = $conv;
+                break;
+            }
+        }
+    }
+
+    $raw = normalize_newlines($raw);
+
+    // Volcar a un stream temporal para que fgetcsv funcione igual que con un archivo
+    $stream = fopen('php://temp', 'r+');
+    if ($stream === false) {
+        fwrite(STDERR, "No se pudo abrir stream temporal.\n");
+        exit(1);
+    }
+    fwrite($stream, $raw);
+    rewind($stream);
+    return $stream;
 }
 
 function escape_sql(string $str): string {
@@ -72,11 +115,8 @@ function parse_steps_field(?string $raw): ?array {
     return [$raw];
 }
 
-$fh = fopen($input, 'r');
-if ($fh === false) {
-    fwrite(STDERR, "No se pudo abrir el CSV para lectura.\n");
-    exit(1);
-}
+// Abrir CSV como UTF-8 en stream temporal
+$fh = open_csv_as_utf8($input);
 
 // Forzar delimitador ; y enclosure "
 $delimiter = ';';
@@ -86,9 +126,7 @@ $escape = '\\';
 $headers = null;
 $rows = [];
 while (($row = fgetcsv($fh, 0, $delimiter, $enclosure, $escape)) !== false) {
-    // Convierte cada celda a UTF-8
-    foreach ($row as &$cell) { $cell = mb_to_utf8((string)$cell); }
-    unset($cell);
+    // Las celdas ya vienen en UTF-8 por haber convertido el archivo completo
 
     if ($headers === null) {
         $headers = $row;
