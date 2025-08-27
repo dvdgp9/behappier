@@ -94,12 +94,80 @@ $titleForDuration = ($duration === 1)
   : (($duration === 5)
     ? 'Recarga y conecta en 5 minutos'
     : '10 minutos de conexión profunda');
+// Si es una petición AJAX, devolvemos solo el bloque del ejercicio
+if (isset($_GET['ajax']) && (int)$_GET['ajax'] === 1) {
+  ob_start();
+  if ($task): ?>
+    <div id="exercise-block">
+      <article class="card desenfocado">
+        <h2 class="h1" style="font-size:24px; margin-bottom:6px"><?= e($task['title']) ?></h2>
+        <p class="text-subtle" style="margin:8px 0 8px"><?= e($task['guidance']) ?></p>
+        <?php
+          $stepsArr = null;
+          if (!empty($task['steps'])) {
+            $decoded = json_decode((string)$task['steps'], true);
+            if (is_array($decoded)) { $stepsArr = $decoded; }
+          }
+        ?>
+        <?php if ($stepsArr): ?>
+          <ol style="margin:0 0 8px 18px; padding:0; color:#4A3F35">
+            <?php foreach ($stepsArr as $s): ?>
+              <li style="margin:4px 0;"><?= e((string)$s) ?></li>
+            <?php endforeach; ?>
+          </ol>
+        <?php endif; ?>
+        <div id="timer" data-mins="<?= $duration ?>" class="stack-16">
+          <div style="font-family:'Patrick Hand',cursive; font-size:42px; letter-spacing:1px">00:00</div>
+          <div style="display:flex; gap:8px; flex-wrap:wrap">
+            <button class="btn" data-action="start" type="button">Empezar</button>
+            <button class="btn secondary" data-action="pause" type="button">Pausar</button>
+            <button class="btn secondary" data-action="finish" type="button">Terminar</button>
+          </div>
+        </div>
+      </article>
+
+      <form method="post" class="form stack-16 card desenfocado" id="post-timer" style="display:none">
+        <input type="hidden" name="csrf" value="<?= e(csrf_token()) ?>">
+        <input type="hidden" name="action" value="save">
+        <input type="hidden" name="task_id" value="<?= (int)$task['id'] ?>">
+        <input type="hidden" name="entry_id" value="">
+        <div>
+          <label><strong>¿Cómo te sientes ahora?</strong></label>
+          <div style="display:flex; gap:8px; margin-top:6px">
+            <?php for ($i=1; $i<=5; $i++): ?>
+              <label style="display:flex; align-items:center; gap:6px; background:#fff; padding:6px 10px; border-radius:12px; border:1px solid #eee">
+                <input type="radio" name="mood" value="<?= $i ?>"> <span><?= $i ?></span>
+              </label>
+            <?php endfor; ?>
+          </div>
+        </div>
+        <label>
+          <span>Nota (opcional)</span>
+          <input class="input" type="text" name="note" maxlength="240" placeholder="Una línea para recordarlo...">
+        </label>
+        <div style="display:flex; gap:8px; align-items:center">
+          <button class="btn" type="submit">Guardar</button>
+          <a class="btn secondary" href="?d=<?= $duration ?>">Conectar de nuevo</a>
+        </div>
+      </form>
+    </div>
+  <?php else: ?>
+    <div id="exercise-block">
+      <div class="alert">No hay tareas para esta duración por ahora.</div>
+    </div>
+  <?php endif; 
+  echo ob_get_clean();
+  exit;
+}
 ?>
 <?php include __DIR__ . '/partials/head.php'; ?>
   <section class="center">
     <div class="card desenfocado" style="width:min(680px,100%)">
       <div style="display:flex; justify-content:space-between; align-items:center; gap:8px; margin-bottom:8px">
         <h1 class="h1" style="margin:0"><?= e($titleForDuration) ?></h1>
+        <a class="icon-btn js-swap-exercise" href="?d=<?= $duration ?>&swap=1" aria-label="Cambiar ejercicio" title="Cambiar ejercicio">
+          <i class="iconoir-refresh"></i>
+        </a>
       </div>
 
       <div class="stack-16">
@@ -112,6 +180,7 @@ $titleForDuration = ($duration === 1)
         <?php endif; ?>
 
         <?php if ($task): ?>
+          <div id="exercise-block">
           <article class="card desenfocado">
             <h2 class="h1" style="font-size:24px; margin-bottom:6px"><?= e($task['title']) ?></h2>
             <p class="text-subtle" style="margin:8px 0 8px"><?= e($task['guidance']) ?></p>
@@ -163,8 +232,9 @@ $titleForDuration = ($duration === 1)
               <a class="btn secondary" href="?d=<?= $duration ?>">Conectar de nuevo</a>
             </div>
           </form>
+          </div>
         <?php else: ?>
-          <div class="alert">No hay tareas para esta duración por ahora.</div>
+          <div id="exercise-block"><div class="alert">No hay tareas para esta duración por ahora.</div></div>
         <?php endif; ?>
       </div>
     </div>
