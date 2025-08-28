@@ -6,3 +6,19 @@
 # Editor/IDE
 .vscode/
 .idea/
+
+# Import scripts (local only)
+scripts/import_tasks1_from_csv.php
+scripts/import_tasks_from_json.php
+
+# Data: ignore local/import artifacts, keep schema/seed/migrations tracked
+data/*.csv
+data/*_import.sql
+data/*.dump.sql
+data/*.sql.bak
+data/*.tmp
+data/*.log
+!data/schema.sql
+!data/seed.sql
+!data/add_columns_to_tasks.sql
+!data/migrations/
