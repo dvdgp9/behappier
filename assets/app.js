@@ -108,12 +108,16 @@
       pause(); render();
       // play end sound (best-effort)
       try { endSound.currentTime = 0; endSound.play().catch(()=>{}); } catch (e) {}
-      // reveal post-form
-      if (postForm){ postForm.style.display = ''; }
+      
+      // Show daily mood modal instead of old post-form
+      const moodModal = document.getElementById('daily-mood-modal');
+      if (moodModal) {
+        moodModal.style.display = 'flex';
+        // Focus first mood option
+        const firstMood = moodModal.querySelector('input[name="daily_mood"]');
+        if (firstMood) firstMood.focus();
+      }
       timer.style.display = 'none';
-      // try to focus first input
-      const mood = postForm && postForm.querySelector('input[name="mood"]');
-      if (mood) mood.focus();
 
       // Autosave: crea entrada inmediata (sin mood/note) y guarda entry_id oculto
       try {
@@ -174,6 +178,77 @@
       .catch(()=>{})
       .finally(()=>{ delete a.dataset.loading; });
   });
+
+  // Daily mood modal handlers
+  function initDailyMoodModal(){
+    const modal = document.getElementById('daily-mood-modal');
+    if (!modal) return;
+
+    const saveBtn = document.getElementById('save-daily-mood');
+    const keepBtn = document.getElementById('keep-mood');
+    const skipBtn = document.getElementById('skip-mood');
+    const postForm = document.getElementById('post-timer');
+
+    function closeMoodModal(){
+      modal.style.display = 'none';
+      // Show completion form
+      if (postForm) postForm.style.display = 'block';
+    }
+
+    function saveDailyMood(){
+      const selectedMood = modal.querySelector('input[name="daily_mood"]:checked');
+      const noteInput = modal.querySelector('input[name="daily_note"]');
+      
+      if (!selectedMood) {
+        alert('Por favor selecciona cómo te sientes');
+        return;
+      }
+
+      const csrf = document.querySelector('input[name="csrf"]').value;
+      const params = new URLSearchParams();
+      params.set('action', 'daily_mood');
+      params.set('csrf', csrf);
+      params.set('mood', selectedMood.value);
+      params.set('note', noteInput ? noteInput.value : '');
+
+      fetch('task.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: params.toString(),
+        credentials: 'same-origin'
+      }).then(r=>r.json()).then(json=>{
+        if (json && json.ok) {
+          closeMoodModal();
+        } else {
+          alert('Error al guardar. Inténtalo de nuevo.');
+        }
+      }).catch(()=>{
+        alert('Error de conexión. Inténtalo de nuevo.');
+      });
+    }
+
+    // Event listeners
+    if (saveBtn) saveBtn.addEventListener('click', saveDailyMood);
+    if (keepBtn) keepBtn.addEventListener('click', closeMoodModal);
+    if (skipBtn) skipBtn.addEventListener('click', closeMoodModal);
+
+    // Close modal on overlay click
+    modal.addEventListener('click', function(e){
+      if (e.target === modal) closeMoodModal();
+    });
+
+    // Handle mood option selection visual feedback
+    const moodOptions = modal.querySelectorAll('.mood-option');
+    moodOptions.forEach(option => {
+      option.addEventListener('click', function(){
+        moodOptions.forEach(opt => opt.classList.remove('selected'));
+        this.classList.add('selected');
+      });
+    });
+  }
+
+  // Initialize mood modal
+  initDailyMoodModal();
 
   // Register service worker for PWA
   if ('serviceWorker' in navigator) {

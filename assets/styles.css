@@ -79,7 +79,16 @@ small.help{color:#7d746b}
 .bottom-nav .nav-item:focus-visible{outline:3px solid var(--accent1); outline-offset:2px}
 
 /* Desenfoque contextual sobre el fondo para mejorar legibilidad */
-.desenfocado{background:rgba(255,255,255,0.25); -webkit-backdrop-filter: blur(7px) saturate(1.05); backdrop-filter: blur(7px) saturate(1.05);} 
+.desenfocado{background:rgba(255,255,255,0.25); -webkit-backdrop-filter: blur(7px) saturate(1.05); backdrop-filter: blur(7px) saturate(1.05);}
+
+/* Modal overlay and daily mood styles */
+.modal-overlay{position:fixed; top:0; left:0; right:0; bottom:0; z-index:2000; display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,0.4); padding:20px}
+.modal{max-width:480px; width:100%; max-height:90vh; overflow-y:auto; margin:0}
+.mood-options{display:grid; gap:8px}
+.mood-option{transition:all var(--motion)}
+.mood-option:hover{transform:translateY(-1px)}
+.mood-option.selected{border-color:#4A3F35 !important; background:#fff !important}
+.mood-option input[type="radio"]:focus-visible + span{outline:2px solid var(--accent1); outline-offset:2px} 
 
 /* History list layout safety: allow flex children to shrink and wrap */
 .history-list .card > div{min-width:0}

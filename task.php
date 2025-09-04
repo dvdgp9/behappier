@@ -37,30 +37,51 @@ if (is_post()) {
     exit;
   }
   if ($action === 'save') {
-    // Guardar/actualizar tras el formulario post-timer
+    // Guardar/actualizar tras el formulario post-timer (sin mood, solo entry)
     if (!csrf_check($_POST['csrf'] ?? '')) {
       $errors[] = 'Token CSRF inválido.';
     } else {
       $task_id = (int)($_POST['task_id'] ?? 0);
       $entry_id = isset($_POST['entry_id']) ? (int)$_POST['entry_id'] : 0;
-      $mood = (isset($_POST['mood']) && $_POST['mood'] !== '') ? (int)$_POST['mood'] : null;
-      $note = trim((string)($_POST['note'] ?? ''));
       if ($task_id <= 0) {
         $errors[] = 'Tarea no válida.';
       } else {
         if ($entry_id > 0) {
-          // Actualiza la entrada creada en autosave
-          $st = $pdo->prepare('UPDATE entries SET mood=?, note=? WHERE id=? AND user_id=?');
-          $st->execute([$mood, ($note !== '' ? $note : null), $entry_id, $uid]);
+          // La entrada ya existe desde autosave, no necesita mood aquí
           $success = true;
         } else {
           // Inserta directamente si no hubo autosave
-          $st = $pdo->prepare('INSERT INTO entries (user_id, task_id, duration, mood, note) VALUES (?,?,?,?,?)');
-          $st->execute([$uid, $task_id, $duration, $mood, ($note !== '' ? $note : null)]);
+          $st = $pdo->prepare('INSERT INTO entries (user_id, task_id, duration) VALUES (?,?,?)');
+          $st->execute([$uid, $task_id, $duration]);
           $success = true;
         }
       }
     }
+  }
+  if ($action === 'daily_mood') {
+    // Guardar/actualizar estado anímico diario
+    header('Content-Type: application/json; charset=utf-8');
+    if (!csrf_check($_POST['csrf'] ?? '')) {
+      echo json_encode(['ok' => false, 'error' => 'csrf']);
+      exit;
+    }
+    $mood = (int)($_POST['mood'] ?? 0);
+    $note = trim((string)($_POST['note'] ?? ''));
+    if ($mood < 1 || $mood > 5) {
+      echo json_encode(['ok' => false, 'error' => 'invalid_mood']);
+      exit;
+    }
+    $today = date('Y-m-d');
+    // Intentar actualizar primero
+    $st = $pdo->prepare('UPDATE daily_moods SET mood=?, note=?, updated_at=CURRENT_TIMESTAMP WHERE user_id=? AND date=?');
+    $st->execute([$mood, ($note !== '' ? $note : null), $uid, $today]);
+    if ($st->rowCount() === 0) {
+      // No existía, insertar nuevo
+      $st2 = $pdo->prepare('INSERT INTO daily_moods (user_id, date, mood, note) VALUES (?,?,?,?)');
+      $st2->execute([$uid, $today, $mood, ($note !== '' ? $note : null)]);
+    }
+    echo json_encode(['ok' => true]);
+    exit;
   }
 }
 
@@ -88,6 +109,12 @@ function suggest_task(PDO $pdo, int $uid, int $duration): ?array {
 }
 
 $task = suggest_task($pdo, $uid, $duration);
+
+// Obtener estado anímico del día actual
+$today = date('Y-m-d');
+$st_mood = $pdo->prepare('SELECT mood, note FROM daily_moods WHERE user_id=? AND date=?');
+$st_mood->execute([$uid, $today]);
+$todayMood = $st_mood->fetch();
 // Título según duración elegida
 $titleForDuration = ($duration === 1)
   ? 'Tu respiro de 1 minuto'
@@ -206,28 +233,65 @@ if (isset($_GET['ajax']) && (int)$_GET['ajax'] === 1) {
             </div>
           </article>
 
-          <form method="post" class="form stack-16 card desenfocado" id="post-timer" style="display:none">
+          <!-- Modal de estado anímico diario -->
+          <div class="modal-overlay" id="daily-mood-modal" style="display:none">
+            <div class="modal card desenfocado">
+              <?php if ($todayMood): ?>
+                <h3 class="h1" style="font-size:20px; margin-bottom:12px">Hoy te sientes:</h3>
+                <div class="current-mood" style="text-align:center; margin-bottom:16px">
+                  <span class="mood-display"><?= getMoodEmoji((int)$todayMood['mood']) ?> <?= getMoodText((int)$todayMood['mood']) ?></span>
+                </div>
+                <p style="margin-bottom:16px; color:#6b6158">¿Ha cambiado algo?</p>
+              <?php else: ?>
+                <h3 class="h1" style="font-size:20px; margin-bottom:8px">¿Cómo te sientes hoy?</h3>
+                <p style="margin-bottom:16px; color:#6b6158">Tu registro diario te ayudará a conocerte mejor</p>
+              <?php endif; ?>
+              
+              <div class="mood-options" style="display:grid; gap:8px; margin-bottom:16px">
+                <?php 
+                $moods = [
+                  1 => ['emoji' => '😞', 'text' => 'Mal'],
+                  2 => ['emoji' => '😔', 'text' => 'Regular'], 
+                  3 => ['emoji' => '😐', 'text' => 'Normal'],
+                  4 => ['emoji' => '😌', 'text' => 'Bien'],
+                  5 => ['emoji' => '😊', 'text' => 'Muy bien']
+                ];
+                foreach ($moods as $value => $mood): 
+                  $isSelected = $todayMood && (int)$todayMood['mood'] === $value;
+                ?>
+                  <label class="mood-option <?= $isSelected ? 'selected' : '' ?>" style="display:flex; align-items:center; gap:12px; padding:12px; border-radius:12px; border:2px solid <?= $isSelected ? '#4A3F35' : '#eee' ?>; background:<?= $isSelected ? '#fff' : '#ffffff88' ?>; cursor:pointer">
+                    <input type="radio" name="daily_mood" value="<?= $value ?>" <?= $isSelected ? 'checked' : '' ?> style="display:none">
+                    <span style="font-size:24px"><?= $mood['emoji'] ?></span>
+                    <span style="font-weight:600"><?= $mood['text'] ?></span>
+                  </label>
+                <?php endforeach; ?>
+              </div>
+              
+              <label style="margin-bottom:16px">
+                <span style="color:#6b6158; font-size:14px">¿Algo que quieras recordar de hoy? (opcional)</span>
+                <input class="input" type="text" name="daily_note" maxlength="100" placeholder="Una palabra o frase..." value="<?= e($todayMood['note'] ?? '') ?>" style="margin-top:4px">
+              </label>
+              
+              <div style="display:flex; gap:8px; align-items:center">
+                <button class="btn" id="save-daily-mood" type="button">Guardar</button>
+                <?php if ($todayMood): ?>
+                  <button class="btn secondary" id="keep-mood" type="button">Mantener así</button>
+                <?php else: ?>
+                  <button class="btn secondary" id="skip-mood" type="button">Saltar por hoy</button>
+                <?php endif; ?>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Formulario simple para guardar la entrada del ejercicio -->
+          <form method="post" class="form" id="post-timer" style="display:none">
             <input type="hidden" name="csrf" value="<?= e(csrf_token()) ?>">
             <input type="hidden" name="action" value="save">
             <input type="hidden" name="task_id" value="<?= (int)$task['id'] ?>">
             <input type="hidden" name="entry_id" value="">
-            <div>
-              <label><strong>¿Cómo te sientes ahora?</strong></label>
-              <div style="display:flex; gap:8px; margin-top:6px">
-                <?php for ($i=1; $i<=5; $i++): ?>
-                  <label style="display:flex; align-items:center; gap:6px; background:#fff; padding:6px 10px; border-radius:12px; border:1px solid #eee">
-                    <input type="radio" name="mood" value="<?= $i ?>"> <span><?= $i ?></span>
-                  </label>
-                <?php endfor; ?>
-              </div>
-            </div>
-            <label>
-              <span>Nota (opcional)</span>
-              <input class="input" type="text" name="note" maxlength="240" placeholder="Una línea para recordarlo...">
-            </label>
-            <div style="display:flex; gap:8px; align-items:center">
-              <button class="btn" type="submit">Guardar</button>
-              <a class="btn secondary" href="?d=<?= $duration ?>">Conectar de nuevo</a>
+            <div style="text-align:center; padding:20px">
+              <p style="color:#6b6158; margin-bottom:16px">¡Ejercicio completado!</p>
+              <button class="btn" type="submit">Continuar</button>
             </div>
           </form>
           </div>

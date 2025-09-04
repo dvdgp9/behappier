@@ -106,6 +106,87 @@
 - Páginas: login/registro (`index.php`, `register.php`), `home.php` (selector de duración), `task.php` (temporizador y guardado), `history.php` (últimas entradas).
 - Temporizador en `assets/app.js`. Estilos base y textura en `assets/styles.css`.
 
+## Planner Analysis: Post-Task Modal Redesign
+
+### Contexto actual
+El modal actual tras completar una tarea muestra:
+- Título y pasos del ejercicio
+- Pregunta "¿Cómo te sientes ahora?" (escala 1-5)
+- Campo de nota opcional
+
+### Análisis desde perspectiva psicológica y UX
+
+**Problemas identificados:**
+1. **Desconexión temporal**: Mostrar los pasos ya completados no aporta valor reflexivo
+2. **Escala numérica abstracta**: Los números 1-5 carecen de contexto emocional significativo
+3. **Momento inadecuado**: El usuario acaba de salir de un estado contemplativo y se le pide análisis cognitivo inmediato
+
+**Principios budistas aplicables:**
+- **Mindfulness del momento presente**: Capturar la experiencia inmediata sin análisis
+- **No-juicio**: Evitar categorización rígida de estados internos
+- **Impermanencia**: Reconocer que el estado actual es transitorio
+- **Simplicidad**: Menos opciones, más presencia
+
+### Top 3 Propuestas de Rediseño
+
+#### Opción 1: "Registro Sensorial Inmediato"
+**Concepto**: Capturar la experiencia corporal y emocional del momento sin etiquetas cognitivas.
+
+**Interfaz**:
+- Pregunta: "¿Cómo sientes tu cuerpo ahora?"
+- 3 iconos táctiles: Tenso 😤 / Neutro 😐 / Relajado 😌
+- Pregunta: "¿Qué palabra describe este momento?"
+- Campo libre de 1-3 palabras (ej: "calma", "claridad", "inquieto")
+- Botón único: "Registrar y continuar"
+
+**Ventajas**: Conecta con sensaciones corporales (base del mindfulness), evita juicios numéricos, permite expresión personal auténtica.
+
+#### Opción 2: "Check-in Contemplativo"
+**Concepto**: Micro-meditación de cierre que integra la experiencia sin forzar análisis.
+
+**Interfaz**:
+- Texto: "Toma una respiración profunda..."
+- Animación sutil de respiración (3-4 segundos)
+- Pregunta: "¿Qué se queda contigo de estos minutos?"
+- 4 opciones visuales: Una semilla 🌱 (crecimiento) / Una gota 💧 (calma) / Una llama 🔥 (energía) / Una nube ☁️ (ligereza)
+- Campo opcional: "Una palabra o frase" (máx 20 caracteres)
+
+**Ventajas**: Mantiene el estado contemplativo, usa metáforas naturales, integra micro-ritual de cierre.
+
+#### Opción 3: "Gratitud y Continuidad"
+**Concepto**: Enfoque en apreciación y conexión con la intención de cuidado personal.
+
+**Interfaz**:
+- Texto: "Gracias por dedicarte estos minutos"
+- Pregunta: "¿Por qué te alegras de haber hecho esta pausa?"
+- 3 opciones: "Me siento más presente" / "He conectado conmigo" / "He cuidado mi bienestar"
+- Pregunta de continuidad: "¿Cuándo volverás a cuidarte así?"
+- 3 opciones temporales: "En unas horas" / "Mañana" / "Cuando lo necesite"
+
+**Ventajas**: Refuerza comportamiento positivo, crea intención futura, evita auto-evaluación crítica.
+
+### Decisión Final: Registro Diario de Estado Anímico
+
+**Concepto aprobado**: Modal como registro diario con "¿Cómo te sientes hoy?"
+
+**Características clave**:
+- **Una entrada por día**: El modal captura el estado anímico diario, no por ejercicio
+- **Persistencia inteligente**: Si ya hay registro del día, muestra la selección actual con opción de cambiar
+- **Visión a largo plazo**: Datos para análisis temporal y gráficas futuras
+- **Tono cercano y explicativo**: Inspirado en Opción 3 pero enfocado en seguimiento diario
+
+**Implementación requerida**:
+1. Nueva tabla `daily_moods` (user_id, date, mood, note, created_at, updated_at)
+2. Modal actualizado con lógica de "ya registrado hoy" vs "primer registro"
+3. Integración en task.php para mostrar/actualizar registro diario
+4. Base para futuras vistas históricas y analytics
+
+**Ventajas**:
+- Reduce fricción (no pregunta en cada ejercicio)
+- Crea hábito de auto-reflexión diaria
+- Genera datos valiosos para insights personales
+- Mantiene conexión emocional sin ser invasivo
+
 ## Executor's Feedback or Assistance Requests
 - Diseños y decisiones requeridas del usuario:
   1. Marca: ¿wordmark/logotipo, favicon 32/180, textura de fondo tipo papel (archivo)?
