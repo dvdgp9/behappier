@@ -222,11 +222,11 @@ if (isset($_GET['ajax']) && (int)$_GET['ajax'] === 1) {
             <div id="timer" data-mins="<?= $duration ?>" class="stack-16">
               <div style="font-family:'Patrick Hand',cursive; font-size:42px; letter-spacing:1px">00:00</div>
               <div style="display:flex; gap:8px; flex-wrap:wrap">
-                <button class="btn primary large" data-action="start" type="button" aria-label="Empezar">
-                  <i class="iconoir-play"></i> Empezar
+                <button class="btn primary large" data-action="toggle" type="button" aria-label="Empezar">
+                  <i class="iconoir-play"></i> <span class="btn-label">Empezar</span>
                 </button>
-                <button class="btn ghost" data-action="pause" type="button" aria-label="Pausar">
-                  <i class="iconoir-pause"></i> Pausar
+                <button class="btn ghost" data-action="reset" type="button" aria-label="Reiniciar" disabled>
+                  <i class="iconoir-refresh"></i> Reiniciar
                 </button>
                 <button class="btn secondary" data-action="finish" type="button" aria-label="Terminar">
                   <i class="iconoir-square"></i> Terminar

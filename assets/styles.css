@@ -49,6 +49,11 @@ body.with-bottom-nav main{padding-bottom:calc(80px + env(safe-area-inset-bottom)
 .btn:focus-visible{outline:3px solid var(--accent1); outline-offset:2px}
 .btn[disabled], .btn:disabled{opacity:.6; cursor:not-allowed; filter:grayscale(.1)}
 
+/* Active/running state for toggle buttons */
+.btn.is-active{box-shadow:0 10px 24px rgba(0,0,0,.16), inset 0 0 0 2px #ffffff44}
+.btn.primary.is-active{background:#3c342c}
+.btn.ghost.is-active{background:#ffffffaa}
+
 /* Variants */
 .btn.primary{background:var(--ink); color:#fff}
 .btn.secondary{background:#ffffff; color:#2f281f; border-color:#e9ded4}

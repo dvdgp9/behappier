@@ -30,8 +30,7 @@
     let lastTick = null;
 
     const displayEl = timer.firstElementChild; // where we render mm:ss
-    const btnStart = $('[data-action="start"]', timer);
-    const btnPause = $('[data-action="pause"]', timer);
+    const btnToggle = $('[data-action="toggle"]', timer);
     const btnReset = $('[data-action="reset"]', timer);
     const btnFinish = $('[data-action="finish"]', timer);
 
@@ -80,21 +79,30 @@
 
     function start(){
       if (running) return;
-      // Prime audio on first explicit user start to avoid autoplay blocks
       primeSound();
       running = true; lastTick = null;
       rafId = requestAnimationFrame(tick);
+      // UI state: toggle becomes "Pausar"
+      updateToggleUI('pause');
+      // Enable reset when timer has begun
+      if (btnReset) btnReset.disabled = false;
     }
 
     function pause(){
+      if (!running) return;
       running = false; lastTick = null;
       if (rafId) cancelAnimationFrame(rafId);
+      // UI state: toggle becomes "Reanudar"
+      updateToggleUI('resume');
     }
 
     function reset(){
       pause(); remaining = total; render();
       if (postForm) postForm.style.display = 'none';
       timer.style.display = '';
+      // UI state: toggle back to "Empezar", disable reset again
+      updateToggleUI('start');
+      if (btnReset) btnReset.disabled = true;
     }
 
     function finishNow(){
@@ -142,13 +150,38 @@
       } catch(_) { /* ignore */ }
     }
 
-    btnStart && btnStart.addEventListener('click', start);
-    btnPause && btnPause.addEventListener('click', pause);
+    function updateToggleUI(state){
+      if (!btnToggle) return;
+      const labelSpan = btnToggle.querySelector('.btn-label');
+      const icon = btnToggle.querySelector('i');
+      btnToggle.classList.remove('is-active');
+      if (state === 'pause'){
+        // running
+        if (labelSpan) labelSpan.textContent = 'Pausar';
+        if (icon) icon.className = 'iconoir-pause';
+        btnToggle.setAttribute('aria-label', 'Pausar');
+        btnToggle.classList.add('is-active');
+      } else if (state === 'resume'){
+        if (labelSpan) labelSpan.textContent = 'Reanudar';
+        if (icon) icon.className = 'iconoir-play';
+        btnToggle.setAttribute('aria-label', 'Reanudar');
+      } else {
+        if (labelSpan) labelSpan.textContent = 'Empezar';
+        if (icon) icon.className = 'iconoir-play';
+        btnToggle.setAttribute('aria-label', 'Empezar');
+      }
+    }
+
+    btnToggle && btnToggle.addEventListener('click', function(){
+      if (running) { pause(); } else { start(); }
+    });
     btnReset && btnReset.addEventListener('click', reset);
     btnFinish && btnFinish.addEventListener('click', finishNow);
 
-    // initial render
+    // initial render and UI state
     render();
+    updateToggleUI('start');
+    if (btnReset) btnReset.disabled = true;
   }
 
   // Expose initializer in case it's needed elsewhere
