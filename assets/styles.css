@@ -73,8 +73,8 @@ body.with-bottom-nav main{padding-bottom:calc(80px + env(safe-area-inset-bottom)
 @media (max-width: 420px){
   #timer .btn{height:34px; padding:0 8px}
   #timer .btn.small{height:34px; padding:0 8px}
-  #timer .btn i{font-size:16px}
-  #timer .btn.small i{font-size:15px}
+  #timer .btn i{font-size:14px}
+  #timer .btn.small i{font-size:14px}
 }
 .stack-16{display:grid; gap:16px}
 .center{display:grid; place-items:center; min-height:calc(100dvh - 154px)}
