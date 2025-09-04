@@ -72,7 +72,7 @@ small.help{color:#7d746b}
 /* History list layout safety: allow flex children to shrink and wrap */
 .history-list .card > div{min-width:0}
 .history-list{overflow-x:hidden; overflow-y:auto; align-content:start; justify-content:start; align-items:start; place-content:start}
-.history-list {height: 70vh}
+.history-list {max-height: 66vh}
 
 /* History page header */
 .history-header{display:flex; justify-content:space-between; align-items:center; gap:8px; margin-bottom:8px}
@@ -128,11 +128,11 @@ body.leaving main{animation: pageOut 280ms var(--motion) forwards}
   .h1{font-size:22px}
   .card{padding:16px}
   .history{padding:16px}
-  .history-list .card{padding:12px}
+  .history-list .card{padding:8px 12px}
   .history-list .dur-col{min-width:44px}
   .history-list .date-col{min-width:auto}
   .history-list .date-col small{font-size:12px; white-space:nowrap}
-  .history-list .card{flex-wrap:wrap; align-items:flex-start}
+  .history-list .card{flex-wrap:wrap; align-items:center}
   .history-list .date-col{margin-left:auto}
   .hero .brand{font-size:30px}
   .btn.duration{height:52px; font-size:19px; padding:0 16px}
