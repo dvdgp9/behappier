@@ -85,7 +85,11 @@ small.help{color:#7d746b}
 .modal-overlay{position:fixed; top:0; left:0; right:0; bottom:0; z-index:2000; display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,0.4); padding:20px}
 .modal{max-width:480px; width:100%; max-height:90vh; overflow-y:auto; margin:0}
 .mood-options{display:grid; gap:8px}
-.mood-option{transition:all var(--motion)}
+.mood-option{
+  display:flex; align-items:center; gap:12px; padding:12px; border-radius:12px;
+  border:2px solid #eee; background:#ffffff88; cursor:pointer;
+  transition:all var(--motion)
+}
 .mood-option:hover{transform:translateY(-1px)}
 .mood-option.selected{border-color:#4A3F35 !important; background:#fff !important}
 .mood-option input[type="radio"]:focus-visible + span{outline:2px solid var(--accent1); outline-offset:2px} 

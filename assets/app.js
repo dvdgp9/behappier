@@ -239,10 +239,19 @@
 
     // Handle mood option selection visual feedback
     const moodOptions = modal.querySelectorAll('.mood-option');
+    const moodInputs = modal.querySelectorAll('input[name="daily_mood"]');
     moodOptions.forEach(option => {
       option.addEventListener('click', function(){
         moodOptions.forEach(opt => opt.classList.remove('selected'));
         this.classList.add('selected');
+      });
+    });
+    // Keep visual state in sync when radios change (keyboard navigation, etc.)
+    moodInputs.forEach(input => {
+      input.addEventListener('change', function(){
+        moodOptions.forEach(opt => opt.classList.remove('selected'));
+        const label = this.closest('.mood-option');
+        if (label) label.classList.add('selected');
       });
     });
   }

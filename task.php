@@ -255,7 +255,7 @@ if (isset($_GET['ajax']) && (int)$_GET['ajax'] === 1) {
                 foreach ($moods as $value => $mood): 
                   $isSelected = $todayMood && (int)$todayMood['mood'] === $value;
                 ?>
-                  <label class="mood-option <?= $isSelected ? 'selected' : '' ?>" style="display:flex; align-items:center; gap:12px; padding:12px; border-radius:12px; border:2px solid <?= $isSelected ? '#4A3F35' : '#eee' ?>; background:<?= $isSelected ? '#fff' : '#ffffff88' ?>; cursor:pointer">
+                  <label class="mood-option <?= $isSelected ? 'selected' : '' ?>" style="display:flex; align-items:center; gap:12px; padding:12px; border-radius:12px; cursor:pointer">
                     <input type="radio" name="daily_mood" value="<?= $value ?>" <?= $isSelected ? 'checked' : '' ?> style="display:none">
                     <span style="font-size:24px"><?= $mood['emoji'] ?></span>
                     <span style="font-weight:600"><?= $mood['text'] ?></span>
