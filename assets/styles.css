@@ -69,8 +69,8 @@ small.help{color:#7d746b}
 /* History button (bottom-right), same visual */
 .icon-btn.history{position:fixed; right:calc(20px + env(safe-area-inset-right)); bottom:calc(24px + env(safe-area-inset-bottom)); z-index:1100}
 
-/* Bottom navigation (mobile) */
-.bottom-nav{position:fixed; left:0; right:0; bottom:0; z-index:1200; display:none; gap:6px; padding:8px max(10px, env(safe-area-inset-left)) calc(8px + env(safe-area-inset-bottom)) max(10px, env(safe-area-inset-right));
+/* Bottom navigation (all viewports) */
+.bottom-nav{position:fixed; left:0; right:0; bottom:0; z-index:1200; display:flex; gap:6px; padding:8px max(10px, env(safe-area-inset-left)) calc(8px + env(safe-area-inset-bottom)) max(10px, env(safe-area-inset-right));
   background:rgba(255,255,255,0.86); -webkit-backdrop-filter: blur(10px) saturate(1.05); backdrop-filter: blur(10px) saturate(1.05); border-top:1px solid #e9ded4}
 .bottom-nav .nav-item{flex:1; min-width:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px; padding:8px 6px; border-radius:12px; color:#4A3F35; text-decoration:none; font-size:11px; font-weight:600}
 .bottom-nav .nav-item i{font-size:22px}
@@ -137,8 +137,7 @@ body.leaving main{animation: pageOut 280ms var(--motion) forwards}
 
 /* Responsive tweaks */
 @media (max-width: 600px){
-  /* Show bottom nav on small screens and hide header account to avoid duplication */
-  .bottom-nav{display:flex}
+  /* Hide header account icon on small screens to avoid duplication */
   .site-header .icon-btn{display:none}
   .h1{font-size:22px}
   .card{padding:16px}
@@ -161,4 +160,7 @@ body.leaving main{animation: pageOut 280ms var(--motion) forwards}
 @media (min-width: 900px){
   body{ background-image: url('textures/fondo-pc-behappier.jpg'); }
   .site-header .icon-btn{ position:fixed; top:16px; right:20px; z-index:1100 }
+  /* Desktop bottom-nav refinements */
+  .bottom-nav{justify-content:center; gap:12px; padding:10px 20px calc(14px + env(safe-area-inset-bottom)) 20px}
+  .bottom-nav .nav-item{max-width:160px; font-size:12px}
 }
