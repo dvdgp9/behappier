@@ -115,6 +115,19 @@ $today = date('Y-m-d');
 $st_mood = $pdo->prepare('SELECT mood, note FROM daily_moods WHERE user_id=? AND date=?');
 $st_mood->execute([$uid, $today]);
 $todayMood = $st_mood->fetch();
+// Helpers para representar el estado anímico
+if (!function_exists('getMoodEmoji')) {
+  function getMoodEmoji(int $mood): string {
+    $emojis = [1 => '😞', 2 => '😔', 3 => '😐', 4 => '😌', 5 => '😊'];
+    return $emojis[$mood] ?? '😐';
+  }
+}
+if (!function_exists('getMoodText')) {
+  function getMoodText(int $mood): string {
+    $texts = [1 => 'Mal', 2 => 'Regular', 3 => 'Normal', 4 => 'Bien', 5 => 'Muy bien'];
+    return $texts[$mood] ?? 'Normal';
+  }
+}
 // Título según duración elegida
 $titleForDuration = ($duration === 1)
   ? 'Tu respiro de 1 minuto'
@@ -152,28 +165,14 @@ if (isset($_GET['ajax']) && (int)$_GET['ajax'] === 1) {
         </div>
       </article>
 
-      <form method="post" class="form stack-16 card desenfocado" id="post-timer" style="display:none">
+      <form method="post" class="form" id="post-timer" style="display:none">
         <input type="hidden" name="csrf" value="<?= e(csrf_token()) ?>">
         <input type="hidden" name="action" value="save">
         <input type="hidden" name="task_id" value="<?= (int)$task['id'] ?>">
         <input type="hidden" name="entry_id" value="">
-        <div>
-          <label><strong>¿Cómo te sientes ahora?</strong></label>
-          <div style="display:flex; gap:8px; margin-top:6px">
-            <?php for ($i=1; $i<=5; $i++): ?>
-              <label style="display:flex; align-items:center; gap:6px; background:#fff; padding:6px 10px; border-radius:12px; border:1px solid #eee">
-                <input type="radio" name="mood" value="<?= $i ?>"> <span><?= $i ?></span>
-              </label>
-            <?php endfor; ?>
-          </div>
-        </div>
-        <label>
-          <span>Nota (opcional)</span>
-          <input class="input" type="text" name="note" maxlength="240" placeholder="Una línea para recordarlo...">
-        </label>
-        <div style="display:flex; gap:8px; align-items:center">
-          <button class="btn" type="submit">Guardar</button>
-          <a class="btn secondary" href="?d=<?= $duration ?>">Conectar de nuevo</a>
+        <div style="text-align:center; padding:20px">
+          <p style="color:#6b6158; margin-bottom:16px">¡Ejercicio completado!</p>
+          <button class="btn" type="submit">Continuar</button>
         </div>
       </form>
     </div>
