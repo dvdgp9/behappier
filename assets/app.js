@@ -78,45 +78,21 @@
       rafId = requestAnimationFrame(tick);
     }
 
-    function updateButtonStates(){
-      if (btnStart) {
-        if (running) {
-          btnStart.classList.add('inactive');
-          btnStart.disabled = true;
-        } else {
-          btnStart.classList.remove('inactive');
-          btnStart.disabled = false;
-        }
-      }
-      if (btnPause) {
-        if (running) {
-          btnPause.classList.add('active');
-          btnPause.disabled = false;
-        } else {
-          btnPause.classList.remove('active');
-          btnPause.disabled = true;
-        }
-      }
-    }
-
     function start(){
       if (running) return;
       // Prime audio on first explicit user start to avoid autoplay blocks
       primeSound();
       running = true; lastTick = null;
-      updateButtonStates();
       rafId = requestAnimationFrame(tick);
     }
 
     function pause(){
       running = false; lastTick = null;
-      updateButtonStates();
       if (rafId) cancelAnimationFrame(rafId);
     }
 
     function reset(){
       pause(); remaining = total; render();
-      updateButtonStates();
       if (postForm) postForm.style.display = 'none';
       timer.style.display = '';
     }
@@ -130,7 +106,6 @@
 
     function finish(){
       pause(); render();
-      updateButtonStates();
       // play end sound (best-effort)
       try { endSound.currentTime = 0; endSound.play().catch(()=>{}); } catch (e) {}
       
@@ -172,9 +147,8 @@
     btnReset && btnReset.addEventListener('click', reset);
     btnFinish && btnFinish.addEventListener('click', finishNow);
 
-    // initial render and button states
+    // initial render
     render();
-    updateButtonStates();
   }
 
   // Expose initializer in case it's needed elsewhere

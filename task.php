@@ -222,9 +222,15 @@ if (isset($_GET['ajax']) && (int)$_GET['ajax'] === 1) {
             <div id="timer" data-mins="<?= $duration ?>" class="stack-16">
               <div style="font-family:'Patrick Hand',cursive; font-size:42px; letter-spacing:1px">00:00</div>
               <div style="display:flex; gap:8px; flex-wrap:wrap">
-                <button class="btn" data-action="start" type="button">Empezar</button>
-                <button class="btn secondary" data-action="pause" type="button">Pausar</button>
-                <button class="btn secondary" data-action="finish" type="button">Terminar</button>
+                <button class="btn primary large" data-action="start" type="button" aria-label="Empezar">
+                  <i class="iconoir-play"></i> Empezar
+                </button>
+                <button class="btn ghost" data-action="pause" type="button" aria-label="Pausar">
+                  <i class="iconoir-pause"></i> Pausar
+                </button>
+                <button class="btn secondary" data-action="finish" type="button" aria-label="Terminar">
+                  <i class="iconoir-square"></i> Terminar
+                </button>
               </div>
             </div>
           </article>
@@ -269,11 +275,11 @@ if (isset($_GET['ajax']) && (int)$_GET['ajax'] === 1) {
               </label>
               
               <div style="display:flex; gap:8px; align-items:center">
-                <button class="btn" id="save-daily-mood" type="button">Guardar</button>
+                <button class="btn primary" id="save-daily-mood" type="button"><i class="iconoir-check"></i> Guardar</button>
                 <?php if ($todayMood): ?>
-                  <button class="btn secondary" id="keep-mood" type="button">Mantener así</button>
+                  <button class="btn ghost" id="keep-mood" type="button">Mantener así</button>
                 <?php else: ?>
-                  <button class="btn secondary" id="skip-mood" type="button">Saltar por hoy</button>
+                  <button class="btn ghost" id="skip-mood" type="button">Saltar por hoy</button>
                 <?php endif; ?>
               </div>
             </div>
