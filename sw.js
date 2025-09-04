@@ -1,5 +1,5 @@
 // Service worker for behappier — online-first with cache fallback
-const CACHE_NAME = 'behappier-v1.3.6';
+const CACHE_NAME = 'behappier-v1.3.7';
 const ASSETS = [
   '/',
   '/index.php',
