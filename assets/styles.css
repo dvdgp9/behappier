@@ -120,6 +120,9 @@ small.help{color:#7d746b}
   border:2px solid #eee; background:#ffffff88; cursor:pointer;
   transition:all var(--motion)
 }
+.mood-option input[type="radio"]{display:none}
+.mood-option .emoji{font-size:24px}
+.mood-option .label{font-weight:600}
 .mood-option:hover{transform:translateY(-1px)}
 .mood-option.selected{border-color:#4A3F35 !important; background:#fff !important}
 .mood-option input[type="radio"]:focus-visible + span{outline:2px solid var(--accent1); outline-offset:2px} 
