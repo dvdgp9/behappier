@@ -81,96 +81,131 @@ small.help{color:#7d746b}
 /* Desenfoque contextual sobre el fondo para mejorar legibilidad */
 .desenfocado{background:rgba(255,255,255,0.7); -webkit-backdrop-filter: blur(7px) saturate(1.05); backdrop-filter: blur(7px) saturate(1.05);}
 
-/* Timer controls - beautiful redesign */
+/* Timer controls - refined with transparency and states */
 #timer .btn{
   font-family:"Patrick Hand", cursive; 
-  font-size:18px; 
-  letter-spacing:0.3px;
-  height:48px; 
-  padding:0 20px;
-  border-radius:16px;
+  font-size:17px; 
+  letter-spacing:0.2px;
+  height:44px; 
+  padding:0 18px;
+  border-radius:14px;
   font-weight:500;
   transition:all var(--motion);
   position:relative;
-  overflow:hidden;
+  border:1px solid rgba(255,255,255,0.2);
+  -webkit-backdrop-filter: blur(8px) saturate(1.1);
+  backdrop-filter: blur(8px) saturate(1.1);
 }
 
+/* Start button - active state (when timer can start) */
 #timer .btn[data-action="start"]{
-  background:linear-gradient(135deg, var(--accent2) 0%, #a8d4b8 100%);
-  color:#2d5a3d;
-  box-shadow:0 4px 16px rgba(200,230,208,0.4);
+  background:rgba(200,230,208,0.85);
+  color:#1f4a2d;
+  box-shadow:0 3px 12px rgba(200,230,208,0.3), inset 0 1px 0 rgba(255,255,255,0.3);
+  border-color:rgba(200,230,208,0.4);
 }
 
 #timer .btn[data-action="start"]:hover{
-  transform:translateY(-2px);
-  box-shadow:0 8px 24px rgba(200,230,208,0.6);
-  background:linear-gradient(135deg, #d4f0dc 0%, #a8d4b8 100%);
+  transform:translateY(-1px);
+  background:rgba(200,230,208,0.95);
+  box-shadow:0 6px 20px rgba(200,230,208,0.4), inset 0 1px 0 rgba(255,255,255,0.4);
 }
 
+/* Start button - inactive state (when timer is running) */
+#timer .btn[data-action="start"]:disabled,
+#timer .btn[data-action="start"].inactive{
+  background:rgba(200,230,208,0.3);
+  color:rgba(31,74,45,0.5);
+  box-shadow:0 1px 4px rgba(0,0,0,0.1);
+  border-color:rgba(200,230,208,0.2);
+  cursor:not-allowed;
+  transform:none;
+}
+
+/* Pause button - inactive state (when timer is not running) */
 #timer .btn[data-action="pause"]{
-  background:linear-gradient(135deg, var(--accent1) 0%, #e8b892 100%);
+  background:rgba(240,198,170,0.3);
+  color:rgba(59,47,38,0.5);
+  box-shadow:0 1px 4px rgba(0,0,0,0.1);
+  border-color:rgba(240,198,170,0.2);
+  cursor:not-allowed;
+}
+
+/* Pause button - active state (when timer is running) */
+#timer .btn[data-action="pause"].active{
+  background:rgba(240,198,170,0.85);
   color:#3b2f26;
-  box-shadow:0 4px 16px rgba(240,198,170,0.4);
+  box-shadow:0 3px 12px rgba(240,198,170,0.3), inset 0 1px 0 rgba(255,255,255,0.3);
+  border-color:rgba(240,198,170,0.4);
+  cursor:pointer;
 }
 
-#timer .btn[data-action="pause"]:hover{
-  transform:translateY(-2px);
-  box-shadow:0 8px 24px rgba(240,198,170,0.6);
-  background:linear-gradient(135deg, #f5d4b8 0%, #e8b892 100%);
+#timer .btn[data-action="pause"].active:hover{
+  transform:translateY(-1px);
+  background:rgba(240,198,170,0.95);
+  box-shadow:0 6px 20px rgba(240,198,170,0.4), inset 0 1px 0 rgba(255,255,255,0.4);
 }
 
+/* Finish button - always available but subtle */
 #timer .btn[data-action="finish"]{
-  background:linear-gradient(135deg, var(--accent3) 0%, #d4c5e8 100%);
+  background:rgba(232,223,245,0.6);
   color:#4a3b5c;
-  box-shadow:0 4px 16px rgba(232,223,245,0.4);
+  box-shadow:0 2px 8px rgba(232,223,245,0.2), inset 0 1px 0 rgba(255,255,255,0.2);
+  border-color:rgba(232,223,245,0.3);
 }
 
 #timer .btn[data-action="finish"]:hover{
-  transform:translateY(-2px);
-  box-shadow:0 8px 24px rgba(232,223,245,0.6);
-  background:linear-gradient(135deg, #f0e8f7 0%, #d4c5e8 100%);
+  transform:translateY(-1px);
+  background:rgba(232,223,245,0.8);
+  box-shadow:0 4px 14px rgba(232,223,245,0.3), inset 0 1px 0 rgba(255,255,255,0.3);
 }
 
 /* Modal overlay and daily mood styles */
 .modal-overlay{position:fixed; top:0; left:0; right:0; bottom:0; z-index:2000; display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,0.4); padding:20px}
 .modal{max-width:480px; width:100%; max-height:90vh; overflow-y:auto; margin:0}
 
-/* Beautiful modal buttons */
+/* Beautiful modal buttons - refined with transparency */
 .modal .btn{
   font-family:"Patrick Hand", cursive;
-  font-size:17px;
+  font-size:16px;
   letter-spacing:0.2px;
-  height:44px;
-  padding:0 18px;
-  border-radius:14px;
+  height:42px;
+  padding:0 16px;
+  border-radius:12px;
   font-weight:500;
   transition:all var(--motion);
+  border:1px solid rgba(255,255,255,0.15);
+  -webkit-backdrop-filter: blur(6px) saturate(1.05);
+  backdrop-filter: blur(6px) saturate(1.05);
 }
 
 .modal .btn:not(.secondary){
-  background:linear-gradient(135deg, var(--ink) 0%, #3a2f25 100%);
-  color:#fff;
-  box-shadow:0 4px 14px rgba(74,63,53,0.3);
+  background:rgba(74,63,53,0.9);
+  color:rgba(255,255,255,0.95);
+  box-shadow:0 3px 10px rgba(74,63,53,0.25), inset 0 1px 0 rgba(255,255,255,0.1);
+  border-color:rgba(74,63,53,0.3);
 }
 
 .modal .btn:not(.secondary):hover{
   transform:translateY(-1px);
-  box-shadow:0 6px 20px rgba(74,63,53,0.4);
-  background:linear-gradient(135deg, #5a4f45 0%, #3a2f25 100%);
+  background:rgba(74,63,53,0.95);
+  box-shadow:0 5px 16px rgba(74,63,53,0.35), inset 0 1px 0 rgba(255,255,255,0.15);
+  color:#fff;
 }
 
 .modal .btn.secondary{
-  background:linear-gradient(135deg, #ffffff 0%, #f8f5f2 100%);
-  color:var(--ink);
-  border:2px solid #e9ded4;
-  box-shadow:0 2px 8px rgba(0,0,0,0.08);
+  background:rgba(255,255,255,0.8);
+  color:rgba(74,63,53,0.9);
+  border:1px solid rgba(233,222,212,0.6);
+  box-shadow:0 2px 6px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.4);
 }
 
 .modal .btn.secondary:hover{
   transform:translateY(-1px);
-  box-shadow:0 4px 12px rgba(0,0,0,0.12);
-  background:linear-gradient(135deg, #ffffff 0%, #f0ebe6 100%);
-  border-color:#ddd0c4;
+  background:rgba(255,255,255,0.95);
+  box-shadow:0 4px 10px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.5);
+  border-color:rgba(233,222,212,0.8);
+  color:var(--ink);
 }
 
 .mood-options{display:grid; gap:8px}
