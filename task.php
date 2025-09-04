@@ -196,11 +196,8 @@ if (isset($_GET['ajax']) && (int)$_GET['ajax'] === 1) {
         </a>
       </div>
 
-      <div class="stack-16">
+        <div class="stack-16">
         
-        <?php if ($success): ?>
-          <div class="success">¡Guardado! Gracias por cuidarte hoy. <a href="history.php">Ver historial</a></div>
-        <?php endif; ?>
         <?php if ($errors): ?>
           <div class="alert"><?= e(implode(' ', $errors)) ?></div>
         <?php endif; ?>

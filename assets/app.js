@@ -190,9 +190,9 @@
     const postForm = document.getElementById('post-timer');
 
     function closeMoodModal(){
-      modal.style.display = 'none';
-      // Show completion form
-      if (postForm) postForm.style.display = 'block';
+      // Close modal and return to home after finishing the flow
+      try { modal.style.display = 'none'; } catch(_) {}
+      window.location.href = 'home.php';
     }
 
     function saveDailyMood(){
