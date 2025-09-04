@@ -222,13 +222,13 @@ if (isset($_GET['ajax']) && (int)$_GET['ajax'] === 1) {
             <div id="timer" data-mins="<?= $duration ?>" class="stack-16">
               <div style="font-family:'Patrick Hand',cursive; font-size:42px; letter-spacing:1px">00:00</div>
               <div style="display:flex; gap:8px; flex-wrap:wrap">
-                <button class="btn primary large" data-action="toggle" type="button" aria-label="Empezar">
+                <button class="btn primary" data-action="toggle" type="button" aria-label="Empezar">
                   <i class="iconoir-play"></i> <span class="btn-label">Empezar</span>
                 </button>
-                <button class="btn ghost" data-action="reset" type="button" aria-label="Reiniciar" disabled>
+                <button class="btn ghost small" data-action="reset" type="button" aria-label="Reiniciar" disabled>
                   <i class="iconoir-refresh"></i> Reiniciar
                 </button>
-                <button class="btn secondary" data-action="finish" type="button" aria-label="Terminar">
+                <button class="btn secondary small" data-action="finish" type="button" aria-label="Terminar">
                   <i class="iconoir-square"></i> Terminar
                 </button>
               </div>
@@ -274,10 +274,10 @@ if (isset($_GET['ajax']) && (int)$_GET['ajax'] === 1) {
                 <input class="input" type="text" name="daily_note" maxlength="100" placeholder="Una palabra o frase..." value="<?= e($todayMood['note'] ?? '') ?>" style="margin-top:4px">
               </label>
               
-              <div style="display:flex; gap:8px; align-items:center">
+              <div style="display:flex; gap:10px; align-items:center; margin-top:12px">
                 <button class="btn primary" id="save-daily-mood" type="button"><i class="iconoir-check"></i> Guardar</button>
                 <?php if ($todayMood): ?>
-                  <button class="btn ghost" id="keep-mood" type="button">Mantener así</button>
+                  <button class="btn secondary" id="keep-mood" type="button">Mantener así</button>
                 <?php else: ?>
                   <button class="btn ghost" id="skip-mood" type="button">Saltar por hoy</button>
                 <?php endif; ?>

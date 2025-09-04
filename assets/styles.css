@@ -65,6 +65,17 @@ body.with-bottom-nav main{padding-bottom:calc(80px + env(safe-area-inset-bottom)
 
 /* Sizes */
 .btn.large{height:50px; padding:0 18px; border-radius:16px; font-size:15px; font-weight:700}
+.btn.small{height:36px; padding:0 12px; border-radius:12px; font-size:14px}
+.btn i{font-size:18px}
+.btn.small i{font-size:16px}
+
+/* Timer controls compact layout on small screens */
+@media (max-width: 420px){
+  #timer .btn{height:40px; padding:0 12px}
+  #timer .btn.small{height:34px; padding:0 10px}
+  #timer .btn i{font-size:17px}
+  #timer .btn.small i{font-size:15px}
+}
 .stack-16{display:grid; gap:16px}
 .center{display:grid; place-items:center; min-height:calc(100dvh - 154px)}
 .center.center-top{place-items:start center}
