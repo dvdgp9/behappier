@@ -1,0 +1,262 @@
+[
+  {
+    "category": "Respiración & calma",
+    "duration": "10",
+    "title": "Anapanasati: respirar y saber que respiras",
+    "description": "Meditación clásica: atención amable a la respiración tal como es.",
+    "steps": [
+      "Siéntate estable, espalda larga y mandíbula suelta.",
+      "Siente el aire en nariz o vientre. No modifiques nada.",
+      "Cuenta de 1 a 10 al exhalar; vuelve a 1 cuando te distraigas.",
+      "Deja que la respiración te respire; termina con 3 exhalaciones largas."
+    ]
+  },
+  {
+    "category": "Sentidos al presente",
+    "duration": "10",
+    "title": "Escaneo corporal clásico",
+    "description": "Recorre el cuerpo con curiosidad paciente, de pies a cabeza.",
+    "steps": [
+      "Cierra los ojos si es cómodo. Tres respiraciones profundas.",
+      "Lleva la atención a pies y pantorrillas; nombra sensaciones (calor, presión, neutro).",
+      "Sube por rodillas, muslos, caderas, abdomen, pecho, hombros.",
+      "Continúa por brazos, manos, cuello y rostro; suelta al terminar."
+    ]
+  },
+  {
+    "category": "Mente, emoción y gratitud",
+    "duration": "10",
+    "title": "Ecuanimidad en la respiración",
+    "description": "Entrena equilibrio: dejar venir, dejar ir.",
+    "steps": [
+      "Observa el inicio, mitad y fin de cada inhalación.",
+      "Observa el inicio, mitad y fin de cada exhalación.",
+      "Cuando algo distraiga, reconoce y suelta con suavidad."    ]
+  },
+  {
+    "category": "Mente, emoción y gratitud",
+    "duration": "10",
+    "title": "RAIN (Reconocer, Aceptar, Investigar, Nutrir)",
+    "description": "Una estructura compasiva para momentos difíciles.",
+    "steps": [
+      "Reconoce la emoción con nombre simple.",
+      "Acepta que está presente, sin empujarla fuera.",
+      "Investiga dónde la sientes en el cuerpo."    ]
+  },
+  {
+    "category": "Respiración & calma",
+    "duration": "10",
+    "title": "Noting con la respiración",
+    "description": "Etiquetado suave: nombra lo que ocurre y vuelve al aire.",
+    "steps": [
+      "Atiende el roce del aire en nariz o el vaivén del abdomen.",
+      "Cuando notes un pensamiento, etiqueta. Ej: “pensando / recordando / planificando”.",
+      "Cuando notes una sensación, etiqueta. Ej: “tensión / pulso / felicidad”.",
+      "Vuelve siempre al sentir de la respiración."
+    ]
+  },
+  {
+    "category": "Sentidos al presente",
+    "duration": "10",
+    "title": "Meditación en los sonidos",
+    "description": "Deja que los sonidos te encuentren, sin perseguirlos.",
+    "steps": [
+      "Postura cómoda; ojos cerrados opcional.",
+      "Percibe sonidos cercanos, intermedios y lejanos.",
+      "Atiende el silencio entre sonidos (pausas).",
+      "Si hay juicio (agradable/molesto), obsérvalo y suéltalo."
+    ]
+  },
+  {
+    "category": "Movimiento suave",
+    "duration": "10",
+    "title": "Caminata consciente en casa",
+    "description": "Meditar caminando: lento, estable, con respiración amable.",
+    "steps": [
+      "Marca un trayecto de 6–8 pasos.",
+      "Camina sintiendo planta, empeine, elevación y apoyo.",
+      "Coordina: 3–4 pasos inhalando, 3–4 exhalando (solo si es cómodo).",
+      "Al llegar al extremo, gira con atención y regresa."
+    ]
+  },
+  {
+    "category": "Sentidos al presente",
+    "duration": "10",
+    "title": "Los cuatro elementos en el cuerpo",
+    "description": "Percibe tierra (peso), agua (fluidez), fuego (temperatura), aire (movimiento).",
+    "steps": [
+      "Siente el peso del cuerpo (tierra).",
+      "Nota saliva, humedad de labios o respiración (agua).",
+      "Detecta calor o frescor en el cuerpo (fuego).",
+      "Observa el movimiento del aire al respirar (aire).",
+      "Cambia de elemento cada 3-4 respiraciones."
+    ]
+  },
+  {
+    "category": "Entorno que acompaña",
+    "duration": "10",
+    "title": "Ceremonia mínima del té",
+    "description": "Un rito sencillo para frenar y honrar el momento.",
+    "steps": [
+      "Prepara agua y taza con plena atención.",
+      "Observa vapor, color y aroma antes del primer sorbo.",
+      "Toma sorbos pequeños, respirando entre ellos.",
+      "Agradece el gesto y recoge con calma."
+    ]
+  },
+  {
+    "category": "Sentidos al presente",
+    "duration": "10",
+    "title": "Trataka suave (mirada a un punto)",
+    "description": "Descanso atencional: fijar la vista sin dureza.",
+    "steps": [
+      "Elige una vela, tu mano o un elemento a 1-2m de ti.",
+      "Fija la mirada, suave, en el objeto; parpadea cuando lo necesites.",
+      "Observa durante 2–3′; luego cierra ojos y percibe la posimagen. Recrea el objeto",
+      "Repite; detente si hay molestia ocular."
+    ]
+  },
+  {
+    "category": "Mente, emoción y gratitud",
+    "duration": "10",
+    "title": "Sonrisa interior",
+    "description": "Distribuye una sonrisa leve por el cuerpo.",
+    "steps": [
+      "Evoca una sonrisa suave en labios y ojos.",
+      "Permite que descienda a garganta, pecho y abdomen.",
+      "Deja que llegue a manos, espalda y piernas.",
+      "Respira sintiendo el cuerpo más amable."
+    ]
+  },
+  {
+    "category": "Respiración & calma",
+    "duration": "10",
+    "title": "Mantra so‑ham (soy eso)",
+    "description": "Sincroniza un mantra respiratorio para centrarse.",
+    "steps": [
+      "Inhala pensando “so”.",
+      "Exhala pensando “ham”.",
+      "Si te distraes, vuelve al par de sílabas.",
+      "Deja que el ritmo se haga natural."
+    ]
+  },
+  {
+    "category": "Respiración & calma",
+    "duration": "10",
+    "title": "Bhramari: zumbido de abeja",
+    "description": "Vibración vocal baja para relajar y enfocar.",
+    "steps": [
+      "Inhala por la nariz.",
+      "Exhala emitiendo un zumbido suave y cómodo (mmm).",
+      "Siente vibración en labios, pómulos o pecho.",
+      "Alterna 1′ zumbido / 1′ respiración normal."
+    ]
+  },
+  {
+    "category": "Sentidos al presente",
+    "duration": "10",
+    "title": "Comer consciente (una fruta)",
+    "description": "Transforma un bocado en práctica.",
+    "steps": [
+      "Observa color, forma y textura antes de morder.",
+      "Acerca el aroma y respira 3 veces.",
+      "Da un bocado pequeño y mastica lento, notando sabores.",
+      "Termina con un sorbo de agua y gratitud."
+    ]
+  },
+  {
+    "category": "Mente, emoción y gratitud",
+    "duration": "10",
+    "title": "Diario contemplativo 10′",
+    "description": "Escritura lenta para ver con claridad.",
+    "steps": [
+      "3 líneas: ¿qué hay en mí ahora, qué siento?",
+      "3 líneas: ¿qué necesito realmente?",
+      "3 líneas: ¿qué puedo agradecer hoy?",
+      "1 línea: una acción amable para esta hora."
+    ]
+  },
+  {
+    "category": "Sentidos al presente",
+    "duration": "10",
+    "title": "Conciencia espaciosa (campo abierto)",
+    "description": "Pasa del foco estrecho a una atención amplia.",
+    "steps": [
+      "Elige un punto frente a ti, cercano, y sosténlo 1′.",
+      "Ahora, suaviza la vista y abarca todo el campo visual, 1'.",
+      "Incluye sonidos, cuerpo y respiración en la atención.",
+      "Sigue alternando foco y respirando."
+    ]
+  },
+  {
+    "category": "Mente, emoción y gratitud",
+    "duration": "10",
+    "title": "Gratitud profunda 3×3",
+    "description": "Agradecer con detalle cambia el tono interno.",
+    "steps": [
+      "Escribe 3 cosas que agradeces.",
+      "Para cada una, anota 3 razones concretas.",
+      "Lee en voz baja y siente tus emociones.",
+      "Respira pensando en tus 3 razones."
+    ]
+  },
+  {
+    "category": "Respiración & calma",
+    "duration": "10",
+    "title": "Respirar con la espalda",
+    "description": "Amplía la percepción a la zona dorsal.",
+    "steps": [
+      "Apoya la espalda en respaldo o pared.",
+      "Siente el empuje del aire hacia atrás al inhalar.",
+      "Exhala largo soltando hombros.",
+      "Sostén esta atención 10′, sin esfuerzo."
+    ]
+  },
+  {
+    "category": "Sentidos al presente",
+    "duration": "10",
+    "title": "Cuerpo montaña, respiración niebla",
+    "description": "Visualización: estabilidad y suavidad a la vez.",
+    "steps": [
+      "Imagina tu cuerpo como una montaña estable.",
+      "Percibe la respiración como niebla que sube y baja.",
+      "Si aparece inquietud, vuelve al peso de la montaña.",
+      "Cierra con una inclinación interna de agradecimiento."
+    ]
+  },
+  {
+    "category": "Respiración & calma",
+    "duration": "10",
+    "title": "Conteo descendente 20→1",
+    "description": "Atenúa el ruido mental con un juego simple.",
+    "steps": [
+      "Elige empezar en 20.",
+      "Di el número al exhalar y baja uno cada vez.",
+      "Si te pierdes, vuelve al número en que estabas o a 20.",
+      "Termina con 3 respiraciones sin conteo."
+    ]
+  },  
+  {
+    "category": "Respiración & calma",
+    "duration": "10",
+    "title": "Meditación de 1 a 10",
+    "description": ".",
+    "steps": [
+      "Cuenta de 1 a 10 en cada ciclo inhalación-espiración.",
+      "Mantén, a la vez, la cuenta del número de ciclos que llevas.",
+      "Si pierdes la cuenta, vuelve a empezar de 0."
+    ]
+  },
+  {
+    "category": "Presencia con los demás",
+    "duration": "10",
+    "title": "Empatía silenciosa",
+    "description": "Contemplar al otro desde la calma del corazón.",
+    "steps": [
+      "Piensa en alguien y su jornada de hoy.",
+      "Imagina qué puede estar necesitando.",
+      "Desea para esa persona claridad y apoyo.",
+      "Respira y reconoce también tus propias necesidades."
+    ]
+  }
+]

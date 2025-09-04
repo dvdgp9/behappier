@@ -13,20 +13,6 @@ $st = $pdo->prepare('SELECT e.id, e.created_at, e.duration, e.mood, e.note, t.ti
                      LIMIT ' . $limit);
 $st->execute([$uid]);
 $rows = $st->fetchAll();
-function rel_day_label(string $createdAt): string {
-  try {
-    $dt = new DateTime($createdAt);
-  } catch (Throwable $e) {
-    return $createdAt;
-  }
-  $today = new DateTime('today');
-  $d = (int)$today->diff((clone $dt)->setTime(0,0,0))->days;
-  if ($dt > new DateTime()) { return 'hoy'; }
-  if ($d === 0) return 'hoy';
-  if ($d === 1) return 'ayer';
-  if ($d > 30) return 'hace +30 días';
-  return 'hace ' . $d . ' días';
-}
 ?>
 <?php include __DIR__ . '/partials/head.php'; ?>
   <section class="center center-top">
@@ -53,7 +39,6 @@ function rel_day_label(string $createdAt): string {
                   <div class="history-note"><small class="help">«<?= e($r['note']) ?>»</small></div>
                 <?php endif; ?>
               </div>
-              <div class="meta date-col"><span class="chip"><?= e(rel_day_label((string)$r['created_at'])) ?></span></div>
             </article>
           <?php endforeach; ?>
         </div>
