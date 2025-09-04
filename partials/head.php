@@ -16,8 +16,12 @@ declare(strict_types=1);
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/iconoir@latest/css/iconoir.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/styles.css">
+<?php
+  $hasUser = (function_exists('current_user_id') && current_user_id());
+  $currentPath = basename(parse_url($_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH) ?: '');
+?>
 </head>
-<body>
+<body class="<?= $hasUser ? 'with-bottom-nav' : '' ?>">
 <header class="site-header">
   <div class="container header-inner">
     <div class="brandline">
@@ -30,7 +34,19 @@ declare(strict_types=1);
   </div>
 </header>
 <main class="container">
-<?php if (function_exists('current_user_id') && current_user_id()): ?>
-  <a href="home.php" class="icon-btn home" aria-label="Inicio" title="Inicio"><i class="iconoir-home"></i></a>
-  <a href="history.php" class="icon-btn history" aria-label="Historial" title="Historial"><i class="iconoir-notes"></i></a>
+<?php if ($hasUser): ?>
+  <nav class="bottom-nav" role="navigation" aria-label="Navegación primaria">
+    <a href="home.php" class="nav-item <?= $currentPath === 'home.php' || $currentPath === '' || $currentPath === 'index.php' ? 'active' : '' ?>" aria-current="<?= ($currentPath === 'home.php' || $currentPath === '' || $currentPath === 'index.php') ? 'page' : 'false' ?>">
+      <i class="iconoir-home" aria-hidden="true"></i>
+      <span class="label">Inicio</span>
+    </a>
+    <a href="history.php" class="nav-item <?= $currentPath === 'history.php' ? 'active' : '' ?>" aria-current="<?= ($currentPath === 'history.php') ? 'page' : 'false' ?>">
+      <i class="iconoir-notes" aria-hidden="true"></i>
+      <span class="label">Historial</span>
+    </a>
+    <a href="account.php" class="nav-item <?= $currentPath === 'account.php' ? 'active' : '' ?>" aria-current="<?= ($currentPath === 'account.php') ? 'page' : 'false' ?>">
+      <i class="iconoir-user" aria-hidden="true"></i>
+      <span class="label">Cuenta</span>
+    </a>
+  </nav>
 <?php endif; ?>
