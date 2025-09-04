@@ -72,7 +72,7 @@ small.help{color:#7d746b}
 /* History list layout safety: allow flex children to shrink and wrap */
 .history-list .card > div{min-width:0}
 .history-list{overflow-x:hidden; overflow-y:auto; align-content:start; justify-content:start; align-items:start; place-content:start}
-.history-list {height: 66vh}
+.history-list {height: 60vh}
 
 /* History page header */
 .history-header{display:flex; justify-content:space-between; align-items:center; gap:8px; margin-bottom:8px}
